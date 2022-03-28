@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "204954565593",
+    "project_id": "monkeysms-1643034551453",
+    "storage_bucket": "monkeysms-1643034551453.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204954565593:android:7e62339ee77f4af800f7c8",
+        "android_client_info": {
+          "package_name": "me.lecaro.monkeysms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204954565593-28lueuoa9se4in4fk310doeejldjehv2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.lecaro.monkeysms",
+            "certificate_hash": "9ccf1a2f013dff74807916e907c03d2b90d57429"
+          }
+        },
+        {
+          "client_id": "204954565593-3ks7bq8pdh29rbhutbniesma60aec9ho.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.lecaro.monkeysms",
+            "certificate_hash": "a040f92341e4adffff11b491765e6295b2269020"
+          }
+        },
+        {
+          "client_id": "204954565593-sov1iuhvi3dkbdvs2hie47iiqnmbr2jj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.lecaro.monkeysms",
+            "certificate_hash": "c3b215f88d6e454128acef708e3a31efba730042"
+          }
+        },
+        {
+          "client_id": "204954565593-nc64n02dggvpvrg8uc1jqn10ausrpnp7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnFpEq7pnoWkHaD7oXX6Wz1Aogh855ZdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204954565593-nc64n02dggvpvrg8uc1jqn10ausrpnp7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
