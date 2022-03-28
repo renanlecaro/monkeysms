@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Monkey SMS</string>
-    <string name="server_client_id" translatable="false">204954565593-nc64n02dggvpvrg8uc1jqn10ausrpnp7.apps.googleusercontent.com</string>
 
     <string name="needs_send_sms_title">SMS access</string>
     <string name="needs_send_sms_details">We need access to the SMS of this phone to make them available to you online</string>

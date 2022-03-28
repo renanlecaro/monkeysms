@@ -37,9 +37,11 @@ class AppRepository(val messageDao: MessageDao, val contactDao: ContactDao, val 
     }
 
     val mGoogleSignInClient: GoogleSignInClient by lazy {
+
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
-            .requestIdToken(app.getString(R.string.server_client_id))
+            .requestIdToken(app.getString(R.string.default_web_client_id))
             .build()
         GoogleSignIn.getClient(app, gso)
     }
