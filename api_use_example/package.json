@@ -1,0 +1,29 @@
+{
+  "name": "sample_app",
+  "version": "1.0.0",
+  "description": "Sample implementation of the monkeySMS api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/renanlecaro/monkeysms-sample-implementation.git"
+  },
+  "keywords": [
+    "sample",
+    "sms"
+  ],
+  "author": "Renan LE CARO",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/renanlecaro/monkeysms-sample-implementation/issues"
+  },
+  "homepage": "https://github.com/renanlecaro/monkeysms-sample-implementation#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "ngrok": "^4.3.0",
+    "node-fetch": "^2.6.7"
+  }
+}

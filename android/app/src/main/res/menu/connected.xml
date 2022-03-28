@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/log_out"
+        android:title="@string/menu_logout"
+        android:icon="@drawable/ic_baseline_close_24"
+        />
+    <item android:id="@+id/open_website"
+        android:title="@string/menu_open_website"
+        android:icon="@drawable/ic_baseline_open_in_browser_24"
+        />
+    <item android:id="@+id/menu_sync_now"
+        android:title="@string/menu_sync_now"
+        android:icon="@drawable/ic_baseline_sync_24"
+        />
+    <item android:id="@+id/menu_skip_current_message"
+        android:title="@string/menu_skip_current_message"
+        android:icon="@drawable/ic_baseline_send_24"
+        />
+    <item android:id="@+id/menu_cancelAll"
+        android:title="@string/menu_cancelAll"
+        android:icon="@drawable/ic_baseline_close_24"
+        />
+</menu>

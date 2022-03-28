@@ -1,0 +1,29 @@
+name: Deploy master to production
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.19.0'
+      - name: print secrets
+        run: echo SETTINGS_DOT_JSON >> settings.json
+        shell: bash
+        env:
+          SETTINGS_DOT_JSON : ${{secrets.SETTINGS_DOT_JSON}}
+      - run: npm install  --only=production
+      - run: curl https://install.meteor.com/?release=2.5.3 | sh
+      - run: npx mup deploy --verbose

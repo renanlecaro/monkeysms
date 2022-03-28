@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Monkey SMS</string>
+    <string name="needs_send_sms_title">Accès aux SMS</string>
+    <string name="needs_send_sms_details">Nous avons besoin d\'accéder aux SMS de ce téléphone pour les mettre à votre disposition en ligne</string>
+    <string name="needs_send_sms_action">Autoriser</string>
+    <string name="needs_default_handler_title">Appli SMS</string>
+    <string name="needs_default_handler_details">Nous devons être votre gestionnaire de SMS par défaut pour envoyer et recevoir des SMS</string>
+    <string name="needs_default_handler_action">Définir</string>
+    <string name="needs_login_title">Compte Google</string>
+    <string name="needs_login_details">Connectez-vous au même compte que dans l\'application Web (monkeysms.com) pour pouvoir y envoyer des SMS</string>
+    <string name="needs_login_action">Connecter</string>
+    <string name="ok_title">Connecté</string>
+    <string name="ok_details">Ouvrez monkeysms.com sur votre autre appareil pour commencer à envoyer des SMS. %1$s</string>
+    <string name="loading_title">Synchronisation</string>
+    <string name="loading_details">Envoi de %1$d message(s) et %2$d contact(s) au serveur</string>
+    <string name="sending_title">Envoi</string>
+    <string name="sending_details">Reste %1$s messages à envoyer</string>
+    <string name="sending_action">Annuler</string>
+    <string name="menu_logout">Déconnexion</string>
+    <string name="menu_open_website">Ouvir l\'appli web</string>
+    <string name="menu_sync_now">Sychroniser maintenant</string>
+    <string name="menu_skip_current_message">Retenter l\'envoi</string>
+    <string name="menu_cancelAll">"Annuler tous les envois "</string>
+    <string name="toast_no_message_to_resend">Pas de message à retenter</string>
+    <string name="toast_retrying">%1$s message(s) vont être réenvoyés</string>
+    <string name="toast_all_cancelled">%1$s message(s) ont été annulé</string>
+    <string name="could_not_detect_phonenumber">Impossible de déterminer votre numéro : %1$s</string>
+    <string name="could_not_login_no_phonenumber">Impossible de déterminer votre numéro : %1$s</string>
+    <string name="server_connection_failed">Impossible de joindre le serveur : %1$s</string>
+    <string name="singin_success">Connecté au compte Google %1$s</string>
+    <string name="putToForeground_failed">Impossible de démarrer le service en premier plan : %1$s</string>
+    <string name="error_with">"Erreur  %1$s  %2$s "</string>
+    <string name="send_message_failed">"Erreur d'envoi de SMS : %1$s   "</string>
+    <string name="menu_see_contact">Voir le contact</string>
+    <string name="menu_edit_contact">Modifier le contact</string>
+    <string name="menu_create_contact">Créer le contact</string>
+    <string name="send_sms_to">"Envoyer le SMS à "</string>
+    <string name="message_content">Contenu du message</string>
+    <string name="send">Envoyer</string>
+    <string name="mms_not_supported">Un MMS à été reçu mais MonkeySMS ne permet pas de les lire</string>
+
+</resources>

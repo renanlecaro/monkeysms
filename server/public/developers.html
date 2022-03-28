@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Monkey SMS : Developer documentation</title>
+    <link rel="stylesheet" href="/docs.css" />
+  </head>
+  <body class="basic-page">
+    <a href="/">Go back to the home page</a>
+    <h1>Developer documentation</h1>
+    <p>
+      This page will help you send SMS from your app by using your user's phone
+    </p>
+    <p>
+      All you need is some basic programming knowledge, our sample code is in
+      javascript but you can use any technology.
+    </p>
+    <p>The developer setup is simplified to the maximum.</p>
+    <ul>
+      <li>
+        Get an API key, either by using our webhook system, or by asking users
+        to generate one for you
+      </li>
+      <li>Use the key to send SMS with our system</li>
+    </ul>
+    <p>
+      Usage is completely free for now. SMS automation will be restricted to
+      premium users in the future. You'll have the choice to either pay for your
+      user's premium plan yourself (at a 50% discount) or ask your users to pay
+      their plan. We expect the price to be less than 5 € /month (so 2.5€ /
+      month / user if you pay for them).
+    </p>
+
+    <p>You need to first get an API key, and then use it to send messages</p>
+    <h2>Get your own API key</h2>
+    <p>This is only useful if you want to send messages from your own phone</p>
+    <p>
+      Just open <a href="/">monkeysms.com</a>, log in, go to your profile and
+      click "Create a key manually".
+    </p>
+
+    <h2>Get your customer's API key</h2>
+    <p>This is to send SMS using your customer's phone.</p>
+    <p>
+      To ask a user of your app to send SMSs using their phone, you should send
+      them to our website, passing in a
+      <code>webhook_callback_url</code> parameter. The
+      <code>webhook_callback_url</code> is a url that will be called by
+      MonkeySMS once the setup is complete.
+    </p>
+    <p>
+      This url cannot be localhost:XXXX, as our servers need to be able to reach
+      it. You can use <a href="https://ngrok.com/">ngrok</a> to quickly get a
+      public url for development.
+    </p>
+    <p>
+      The endpoint at <code>webhook_callback_url</code> should handle
+      <code>POST</code> requests. It should be specific to the current user.You
+      can add the user id as part of that url, to then know who the api key
+      belongs to.
+    </p>
+    <p>
+      Here's how you could ask for a user's key and get the result back as a
+      webhook call
+    </p>
+    <p>
+      This is where you'll get the login data back as a POST request from us.
+      The currentUser.id is an example of how to get the user id, adapt the code
+      to your use case.
+    </p>
+    <pre><code>var webhook_callback_url="https://mywebsite/webhooks/monkeysms/" + currentUser.id;</code></pre>
+    <p>
+      This is where you should send your users. They'll create an account,
+      install the app, and grant you access.
+    </p>
+
+    <pre><code>var signin_url="https://monkeysms.com/?webhook_callback_url=" + encodeURIComponent(webhook_callback_url);</code></pre>
+    <p>Send the current user there</p>
+
+    <pre><code>window.location.href=signin_url</code></pre>
+    <p>
+      Once the user grants you access, you'll receive <code>POST</code> request
+      on <code>webhook_callback_url</code>.
+    </p>
+    <p>Your <code>webhook_callback_url</code> page should :</p>
+    <ul>
+      <li>
+        parse the urlencoded payload containing two keys <code>event</code> with
+        the value <code>access_granted</code> and <code>api_key</code> with your
+        user's api key
+      </li>
+      <li>
+        check that the <code>event</code> matches
+        <code>"access_granted"</code> and ignore other requests
+      </li>
+      <li>save the <code>api_key</code> for the correct user</li>
+      <li>return a HTTP status of <code>200</code></li>
+      <li>
+        return a json body with an object, containing a key called
+        <code>redirect_url</code>
+      </li>
+    </ul>
+    <p>
+      Our app will redirect users to that <code>redirect_url</code> once the
+      authorisation is completed
+    </p>
+    <h2>Using the API key to send messages</h2>
+    <p>
+      Make a <code>POST</code> request to
+      <code>https://monkeysms.com/api/v1/messages</code> with your API key as a
+      header (x-api-key : XXXXX) and a JSON encoded body :
+    </p>
+    <pre><code>{
+    "to":"+33XXXXXXXX",
+    "text":"Your SMS text content"
+}</code></pre>
+    The response will either be an empty HTTP 200 or an error response.
+  </body>
+</html>

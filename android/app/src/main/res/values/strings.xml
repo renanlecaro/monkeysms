@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Monkey SMS</string>
+    <string name="server_client_id" translatable="false">204954565593-nc64n02dggvpvrg8uc1jqn10ausrpnp7.apps.googleusercontent.com</string>
+
+    <string name="needs_send_sms_title">SMS access</string>
+    <string name="needs_send_sms_details">We need access to the SMS of this phone to make them available to you online</string>
+    <string name="needs_send_sms_action">Allow</string>
+
+    <string name="needs_default_handler_title">Default handler</string>
+    <string name="needs_default_handler_details">We need to be your default SMS handler to send and receive SMS</string>
+    <string name="needs_default_handler_action">Set</string>
+
+
+    <string name="needs_login_title">Google account</string>
+    <string name="needs_login_details">Connect to the same account as in the web app</string>
+    <string name="needs_login_action">Connect</string>
+
+    <string name="ok_title">Connected</string>
+    <string name="ok_details">Open monkeysms.com on your other device to start sending SMS. %1$s</string>
+
+    <string name="loading_title">Syncing data</string>
+    <string name="loading_details">Sending %1$d message(s) and %2$d contact(s) to the server</string>
+
+    <string name="sending_title">Sending</string>
+    <string name="sending_details">%1$s messages remaining.</string>
+    <string name="sending_action">Cancel</string>
+
+    <string name="menu_logout">Log out</string>
+    <string name="menu_open_website">Open web app</string>
+    <string name="menu_sync_now">Sync now</string>
+    <string name="menu_skip_current_message">Retry sending</string>
+    <string name="menu_cancelAll">Cancel all queue</string>
+
+
+    <string name="toast_no_message_to_resend">No message to reset</string>
+    <string name="toast_retrying">%1$s message(s) will be retried now</string>
+    <string name="toast_all_cancelled">%1$s pending messages have been cancelled</string>
+    <string name="could_not_detect_phonenumber">Could not get your number : %1$s </string>
+    <string name="could_not_login_no_phonenumber">Could not get your number : %1$s </string>
+    <string name="server_connection_failed">Could not connect to server : %1$s </string>
+    <string name="singin_success">Connected to google account : %1$s </string>
+    <string name="putToForeground_failed">putToForeground failed :  %1$s </string>
+    <string name="error_with">Error  %1$s  %2$s </string>
+    <string name="send_message_failed">Could not send SMS : %1$s   </string>
+
+    <string name="menu_see_contact">See contact</string>
+    <string name="menu_edit_contact">Edit contact</string>
+    <string name="menu_create_contact">Create contact</string>
+    <string name="send_sms_to">Send SMS to</string>
+    <string name="message_content">Message content</string>
+    <string name="send">Send</string>
+
+    <string name="mms_not_supported">An MMS was received but MonkeySMS does not support them</string>
+
+</resources>

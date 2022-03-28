@@ -1,0 +1,96 @@
+{
+	"WriteForm": {
+		"input_placeholder": "Write your SMS here, it will be sent to  {{toFormatted}} from {{from}}",
+		"send": "Send"
+	},
+	"apk": {
+		"back_home": "Go back to the home page",
+		"button_label": "Download the APK",
+		"intro": "<p> Google is <a href=\"https://support.google.com/googleplay/android-developer/answer/10208820?hl=en#zippy=%2Cpermitted-uses-of-the-sms-and-call-log-permissions%2Cexceptions\">quite strict</a> about what an SMS app can do, so the app is not on the play store.</p>\n<p>For now, you will need to install it straight from the APK file. You need to download the file, then install it. You will need to allow your web browser to install apps from \"unknown sources\".</p> ",
+		"outro": "<p>Please be aware of the following limitations of the app :</p>\n\n      <ul>\n        <li>\n          <strong>No multi sim support</strong> : only your first sim will be\n          used\n        </li>\n        <li>\n          <strong> 10 MB of storage space</strong> will be required\n        </li>\n        <li>\n          <strong>Google Play Services</strong> are required, as you'll need to\n          log in with Google\n        </li>\n        <li>\n          <strong>Android 5.0 </strong> (API level 21) is the oldest android\n          version we support.\n        </li>\n      </ul>\n\n      <p>The app requires the following permissions :</p>\n      <ul>\n        <li>\n          <strong>SEND_SMS</strong> : we will use it when you click \"send\" on\n          the web chat interface, to actually send the SMS from your SIM card on\n          your phone. We'll also use it when an app you connected asks to send\n          an SMS\n        </li>\n        <li>\n          <strong>READ_SMS</strong> : we use it at install time, to scan your\n          phone for existing messages, so that we can pre-fill the web chat page\n          with your recent SMS conversations\n        </li>\n        <li>\n          <strong>RECEIVE_SMS</strong> : this lets us show you the replies from\n          people on the web UI\n        </li>\n        <li>\n          <strong>READ_CONTACTS</strong> : we keep your contact in sync to help\n          you know who is who, and to more easily start a conversation with\n          someone you know.\n        </li>\n        <li>\n          <strong>INTERNET</strong> : this lets your phone communicate with our\n          server, to exchange messages content and contact information.\n        </li>\n        <li>\n          <strong>FOREGROUND_SERVICE</strong> : this helps us keep the sync\n          running until it is done syncing between the server and your phone.\n        </li>\n      </ul>",
+		"title": "Install Monkey SMS on your phone"
+	},
+	"homepage": {
+		"appLogo": {
+			"label": "Monkey SMS"
+		},
+		"cta": {
+			"login": "Sign in with Google",
+			"open": "Open app",
+			"text": "Use your phone's SMS capabilities anywhere in the world, on any device"
+		},
+		"footer": {
+			"about": "About",
+			"api": "API",
+			"privacy": "Privacy Policy",
+			"tos": "TOS"
+		},
+		"slide_0": {
+			"title": "Send SMS from your computer"
+		},
+		"slide_1": {
+			"p0": "We understand that you might <strong>not have your phone at hand</strong> right now. Maybe you left it at home, while going on vacation in another country. Maybe you have bad network reception at home and therefore the phone is at your brother's place.",
+			"p1": "Contrarily to other apps that let you access your messages remotely, we really try not to require you to touch you phone at all.",
+			"title": "Reliability first"
+		},
+		"slide_2": {
+			"p0": "The reason this app exists is to make the sms programmable. There are already many solutions on the market to send SMS from your computer.",
+			"p1": "However, none of them let you easily send SMS in a simple, programmable and fully automated way.",
+			"title": "Programmable"
+		}
+	},
+	"install_prompt": {
+		"install_app": "Install the app",
+		"on_your_phone": " on your phone ",
+		"open_this": "Open this link ",
+		"or": " or ",
+		"skip": "skip",
+		"title": "You are logged in !"
+	},
+	"profile": {
+		"account": {
+			"delete": "Delete account",
+			"log_out": "Log out from this computer",
+			"title": "Your account"
+		},
+		"api_keys": {
+			"count": "You have connected {{count}} apps to your account.",
+			"create_button": "Create a key",
+			"create_result": "Here's your key",
+			"how_to": "See how to use the <a href=\"/developers.html\" target=\"_blank\"> MonkeySMS API </a>in your own web app. ",
+			"remove": "Remove",
+			"title": "Connected Applications"
+		},
+		"contacts": {
+			"dupes_listed_twice": "Contacts with multiple numbers are created multiple times.",
+			"imported": "You have imported {{count}} name/number combination.",
+			"number_needed": "Contacts without a phone number are ignored.",
+			"title": "Contacts"
+		},
+		"defaultCountry": {
+			"instructions": "Treat phone numbers without country prefix as numbers from : ",
+			"title": "Default country code "
+		},
+		"devices": {
+			"disconnect": "Disconnect",
+			"intro": " Your connected android devices with the app installed :",
+			"last_seen": "last seen",
+			"no_device": "You haven't connected any device yet, so this dashboard is a bit empty. See on <a href=\"/apk\">this page</a> how to install the app.",
+			"no_number": "No SIM card",
+			"title": "Devices"
+		},
+		"notifications": {
+			"blocked": "Push Messaging Blocked",
+			"delete_device": "Remove",
+			"enable": "Enable Push Messaging",
+			"error": "error : {{error}}",
+			"intro": "You can receive the new messages notifications on multiple devices",
+			"loading": "Loading...",
+			"test_device": "Test",
+			"title": "Notifications"
+		}
+	},
+	"sidebar": {
+		"search": "Find a contact"
+	}
+}
