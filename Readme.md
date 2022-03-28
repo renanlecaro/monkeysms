@@ -1,12 +1,12 @@
 # How to run locally (linux/mac)
 
-(this setup has not been tested yet, if you encounter problems running the app locally please raise an issue)
+(this setup has not been tested yet, if you encounter problems running the app locally, please raise an issue)
 
 A few secrets and API keys are needed to make this system work. They are not public. 
 If you want to run this app on your own infra, you'll need to set those.
 
 - server/settings.json : fill it based on server/settings.example.json. You'll need some google login credentials (the 
-  same ones as used in the android client), firebase credentials (to notify android clients) and some public/private key
+  same ones as used in the android client), Firebase credentials (to notify android clients) and some public/private key
   pair for the web notifications.
 
 - android/app/google-services.json : this is exported from the firebase project, and needed to build the android app
@@ -34,7 +34,7 @@ Build the app (after starting the server)
 - click build in android
 
 
-# Project sructure
+# Project structure
 
 ## Android project
 
@@ -55,7 +55,7 @@ See the dev documentation here : https://monkeysms.com/developers.html
 
 # Automatic deployment of the server app
 
-If you create a fork of the project and want the auto deploy of "main" to work, set the following secrets for the github action : 
+If you create a fork of the project and want the auto deploy of "main" to work, set the following secrets for the GitHub action : 
 - secrets.SETTINGS_DOT_JSON : Content of your local settings.json file 
 - secrets.SSH_KEY : Private RSA key used to deploy the meteor app to the server. The corresponding pub key needs to be added to your server's authorized_keys  
-- secrets.KNOWN_HOSTS : Used to deploy the meteor app to the server, result of running `ssh-keyscan -H  188.166.160.106` where the IP adress is changed for your own DigitalOcean droplet
+- secrets.KNOWN_HOSTS : Used to deploy the meteor app to the server, result of running `ssh-keyscan -H  188.166.160.106` where the IP address is changed for your own DigitalOcean droplet
