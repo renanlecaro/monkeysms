@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: '14.19.0'
       - name: print secrets
-        run: echo SETTINGS_DOT_JSON >> settings.json
+        run: echo $SETTINGS_DOT_JSON >> settings.json
         shell: bash
         env:
           SETTINGS_DOT_JSON : ${{secrets.SETTINGS_DOT_JSON}}
