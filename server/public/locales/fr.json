@@ -6,19 +6,10 @@
 	"apk": {
 		"back_home": "Retournez à la page d'accueil",
 		"button_label": "Télécharger l'apk",
-		"intro": "<p> Google  <a href=\"https://support.google.com/googleplay/android-developer/answer/10208820?hl=en#zippy=%2Cpermitted-uses-of-the-sms-and-call-log-permissions%2Cexceptions\">assez strict</a> à propos de ce qu'une application SMS peut faire, alors l'application ne figure pas sur le magasin de jeu. </ P>\n<p> Pour le moment, vous devrez l'installer directement à partir du fichier APK. Vous devez télécharger le fichier, puis l'installer. Vous devrez autoriser votre navigateur Web d'installer des applications à partir de «sources inconnues».</p> \n ",
-		"outro": "<p> Veuillez être conscient des limitations suivantes de l'application: </ p>\n\n      <ul>\n        <li>\n          <strong> Aucun support multi-SIM </ strong>: Seul votre première SIM sera\n          utilisé\n        </ li>\n        <li>\n          <strong> 10 Mo d'espace de stockage </ strong> sera requis\n        </ li>\n        <li>\n          <strong> Google Play Services </ strong> sont nécessaires, comme vous aurez besoin de\n          Connectez-vous avec Google\n        </ li>\n        <li>\n          <strong> Android 5.0 </ strong> (niveau API 21) est le plus ancien Android\n          version que nous soutenons.\n        </ li>\n      </ ul>\n\n      <p> L'application nécessite les autorisations suivantes: </ p>\n      <ul>\n        <li>\n          <strong> SEND_SMS </ strong>: nous allons l'utiliser lorsque vous cliquez sur \"Envoyer\" sur\n          l'interface de discussion Web, pour envoyer les SMS de votre carte SIM sur votre carte SIM\n          ton téléphone. Nous allons également l'utiliser lorsqu'une application que vous avez connectée demande à envoyer\n          un SMS\n        </ li>\n        <li>\n          <strong> READ_SMS </ strong>: Nous l'utilisons au moment de l'installation, pour analyser votre\n          Téléphone pour les messages existants, afin que nous puissions pré-remplir la page de chat Web\n          Avec vos récentes conversations SMS\n        </ li>\n        <li>\n          <strong> RECEIVE_SMS </ strong>: cela nous permet de vous montrer les réponses de\n          personnes sur le web ui\n        </ li>\n        <li>\n          <strong> READ_CONTACTS </ strong>: nous gardons votre contact en synchronisation pour aider\n          vous savez qui est qui est qui, et de commencer plus facilement une conversation avec\n          quelqu'un que tu connais.\n        </ li>\n        <li>\n          <fort> INTERNET </ fort>: cela permet à votre téléphone de communiquer avec notre\n          serveur, pour échanger des messages contenus et des informations de contact.\n        </ li>\n        <li>\n          <strong> FOREGROUND_SERVICE </ strong>: cela nous aide à garder la synchronisation\n          courir jusqu'à ce qu'il soit fait de la synchronisation entre le serveur et votre téléphone.\n        </ li>\n      </ ul>",
-		"title": "Installer Monkey SMS sur votre téléphone"
+		"intro": "<p> Google  <a href=\"https://support.google.com/googleplay/android-developer/answer/10208820?hl=en#zippy=%2Cpermitted-uses-of-the-sms-and-call-log-permissions%2Cexceptions\">assez strict</a> à propos de ce qu'une application SMS peut faire, alors l'application ne figure pas sur le play store. </ P>\n<p> Pour le moment, vous devrez l'installer directement à partir du fichier APK. Vous devez télécharger le fichier, puis l'installer. Vous devrez autoriser votre navigateur Web à installer des applications à partir de «sources inconnues».</p> \n <p> Veuillez être conscient des limitations suivantes de l'application: </ p>\n\n      <ul> \n        <li>\n          <strong> 10 Mo d'espace de stockage </ strong> est requis\n        </ li>\n        <li>\n          Les <strong> Google Play Services </ strong> sont nécessaires, comme vous aurez besoin de\n          vous connecter avec Google\n        </ li>\n        <li>\n          <strong> Android 5.1 </ strong> (niveau API 22) est la plus ancienne version d'Android\n          utilisable.\n        </ li>\n      </ ul>  ",
+		"title": "Installer MonkeySMS sur votre téléphone"
 	},
 	"homepage": {
-		"appLogo": {
-			"label": "Monkey SMS"
-		},
-		"cta": {
-			"login": "Connectez-vous avec Google",
-			"open": "Ouvrir application",
-			"text": "Utilisez les capacités SMS de votre téléphone n'importe où dans le monde, sur n'importe quel appareil"
-		},
 		"footer": {
 			"about": "A propos",
 			"api": "API",
@@ -26,17 +17,23 @@
 			"tos": "CGU"
 		},
 		"slide_0": {
-			"title": "Envoyer des SMS de votre ordinateur"
+			"login": "Accéder à l'application",
+			"open": "Ouvrir application",
+			"p0": "Installez notre <a href=\"/apk\">application</a> android sur un ou plusieurs <strong>téléphones Android</strong>. Connectez le même compte google à l'application et à cette page. ",
+			"p1": "Lisez vos SMS et envoyez des réponses. Votre téléphone peut être n'importe où tant qu'il dispose d'un accès au réseau et d'Internet.",
+			"title": "Envoyer des SMS de n'importe ou"
 		},
 		"slide_1": {
-			"p0": "Nous comprenons que vous pourriez <strong> ne pas avoir votre téléphone à la main </strong> en ce moment. Peut-être que vous l'avez laissé à la maison, en passant des vacances dans un autre pays. Peut-être que vous avez une mauvaise réception réseau à la maison et le téléphone est donc à la place de votre frère.",
-			"p1": "Contrairement à d'autres applications qui vous permettent d'accéder à vos messages à distance, nous essayons vraiment de ne pas vous demander de vous toucher du téléphone.",
-			"title": "Fiable"
-		},
-		"slide_2": {
+			"action": "Documentation ",
 			"p0": "La raison pour laquelle cette application existe est de rendre le SMS programmable. Il existe déjà de nombreuses solutions sur le marché pour envoyer des SMS de votre ordinateur.",
 			"p1": "Cependant, aucun d'entre eux ne vous permet d'envoyer facilement des SMS d'une manière simple, programmable et entièrement automatisée.",
 			"title": "Programmable"
+		},
+		"slide_2": {
+			"action": "Voir le code",
+			"p0": "Il est très difficile de faire accepter ce type d'application utilisateur sur le Play Store. Après quelques refus de leur équipe de vérification, j'ai décidé d'arrêter de perdre des heures sur ça. Au lieu de cela, j'ai décidé de publier le fichier d'installation directement, et de rendre le code entièrement public pour vous permettre de vérifier le contenu de l'appli.",
+			"p1": "Vous pouvez lire le code, et si vous êtes techniquement compétent, vous pouvez même le compiler vous-même. L'appli est <strong>gratuite pour l'instant</strong>, mais veuillez noter que \"open source\" ne signifie pas \"support gratuit\" ou \"hébergement gratuit\". Je me réserve le droit d'introduire un abonnement payant à l'avenir.",
+			"title": "Open source"
 		}
 	},
 	"install_prompt": {

@@ -119,7 +119,7 @@ export function App() {
 }
 
 export function InstallPrompt({ setQS }) {
-  const { t, Block } = useClientTranslation("install_prompt");
+  const { t } = useClientTranslation("install_prompt");
 
   const url = installAddress;
 
@@ -149,7 +149,7 @@ export function InstallPrompt({ setQS }) {
             {skip}
           </p>
         ) : (
-          <p i18nKey={"link_instructions"} url={url}>
+          <p>
             {t("open_this")}
             <a href={"/apk"}>{url}</a>
             {t("on_your_phone")}

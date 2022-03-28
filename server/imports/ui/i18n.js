@@ -36,9 +36,7 @@ export default i18n;
 
 export function useClientTranslation(keyPrefix) {
   const { t } = useTranslation(["whatever"], { keyPrefix });
-  const Block = ({ i18nKey, ...props }) => (
-    <Trans {...props} i18nKey={keyPrefix + "." + i18nKey} />
-  );
+
   const DivHtml = ({ i18nKey, ...props }) => (
     <div
       dangerouslySetInnerHTML={{
@@ -61,7 +59,6 @@ export function useClientTranslation(keyPrefix) {
   );
   return {
     t,
-    Block,
     DivHtml,
     ParagraphHtml,
   };
