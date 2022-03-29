@@ -28,7 +28,7 @@
     <string name="could_not_detect_phonenumber">Impossible de déterminer votre numéro : %1$s</string>
     <string name="could_not_login_no_phonenumber">Impossible de déterminer votre numéro : %1$s</string>
     <string name="server_connection_failed">Impossible de joindre le serveur : %1$s</string>
-    <string name="singin_success">Connecté au compte Google %1$s</string>
+    <string name="signin_success">Connecté au compte Google %1$s</string>
     <string name="putToForeground_failed">Impossible de démarrer le service en premier plan : %1$s</string>
     <string name="error_with">"Erreur  %1$s  %2$s "</string>
     <string name="send_message_failed">"Erreur d'envoi de SMS : %1$s   "</string>

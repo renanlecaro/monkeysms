@@ -180,7 +180,7 @@ class HomeActivity : AppCompatActivity() {
 
             // Signed in successfully, show authenticated UI.
             freshlyConnectedAccount = account
-            repo.toast(R.string.singin_success, account.email.toString())
+            repo.toast(R.string.signin_success, account.email.toString())
             updateUI()
             onLogin(account)
         } catch (e: ApiException) {

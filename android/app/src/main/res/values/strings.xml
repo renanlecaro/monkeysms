@@ -37,7 +37,7 @@
     <string name="could_not_detect_phonenumber">Could not get your number : %1$s </string>
     <string name="could_not_login_no_phonenumber">Could not get your number : %1$s </string>
     <string name="server_connection_failed">Could not connect to server : %1$s </string>
-    <string name="singin_success">Connected to google account : %1$s </string>
+    <string name="signin_success">Connected to google account : %1$s </string>
     <string name="putToForeground_failed">putToForeground failed :  %1$s </string>
     <string name="error_with">Error  %1$s  %2$s </string>
     <string name="send_message_failed">Could not send SMS : %1$s   </string>
