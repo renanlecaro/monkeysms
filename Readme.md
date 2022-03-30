@@ -1,3 +1,10 @@
+# MonkeySMS 
+
+![MonkeySMS logo](./server/public/logo.svg)
+
+This repo contains the code for https://monkeysms.com/, an open source SAAS that lets you send and read SMS messages from 
+your android phone, or anywhere else.
+
 # How to run locally (linux/mac)
 
 (this setup has not been tested yet, if you encounter problems running the app locally, please raise an issue)
