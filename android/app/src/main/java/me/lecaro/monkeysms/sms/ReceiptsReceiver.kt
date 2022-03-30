@@ -15,6 +15,7 @@ import me.lecaro.monkeysms.data.App
 import me.lecaro.monkeysms.data.AppRepository
 import me.lecaro.monkeysms.network.startServerService
 import java.util.*
+import me.lecaro.monkeysms.R
 
 class SendingFailedReceiver : BroadcastReceiver() {
     val TAG = "FailEvt"
@@ -58,17 +59,17 @@ class ReceiptsReceiver : BroadcastReceiver() {
 
                 if (event == "sent" && message !== null) {
                     if (resultCode == Activity.RESULT_OK) {
-
-
                         repo.messageDao.updateStatus(_id, "SENT")
-
                         try {
                             val values = ContentValues();
                             values.put("type", 2);
                             values.put("read", 1);
                             context.getContentResolver().update(uri, values, null, null);
 
+//                            repo.toast( R.string.sending_worked)
                         } catch (e: Exception) {
+                            repo.toast(R.string.error_with, "Write send success", e.toString())
+
                             Log.e(TAG, e.toString())
                         }
 
@@ -80,8 +81,10 @@ class ReceiptsReceiver : BroadcastReceiver() {
                             values.put("error_code", resultCode);
                             context.getContentResolver().update(uri, values, null, null);
 
+                            repo.toast(R.string.sending_failed)
                         } catch (e: Exception) {
                             Log.e(TAG, e.toString())
+                            repo.toast(R.string.error_with, "Write send failure", e.toString())
                         }
 
                         notify(
@@ -103,7 +106,9 @@ class ReceiptsReceiver : BroadcastReceiver() {
                         values.put("date_sent", Calendar.getInstance().getTimeInMillis());
                         values.put("read", true);
                         context.getContentResolver().update(uri, values, null, null);
+//                            repo.toast( R.string.message_delived)
                     } catch (e: Exception) {
+                        repo.toast(R.string.error_with, "Write delivery status", e.toString())
                         Log.e(TAG, e.toString())
                     }
 

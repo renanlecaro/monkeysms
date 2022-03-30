@@ -50,5 +50,8 @@
     <string name="send">Send</string>
 
     <string name="mms_not_supported">An MMS was received but MonkeySMS does not support them</string>
+    <string name="message_delived">Message delivered</string>
+    <string name="sending_failed">Sending failed</string>
+    <string name="sending_worked">Sent</string>
 
 </resources>

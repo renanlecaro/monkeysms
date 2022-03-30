@@ -12,6 +12,7 @@ import me.lecaro.monkeysms.network.startServerService
 
 class AppViewModel(private val repo: AppRepository) : ViewModel() {
        val conversations = repo.messageDao.conversations()
+    val lastEvent = repo.monkeyEventsDao.getRecent(1)
 //   fun getMessagesOfContact(contact: String) = repository.messageDao.getMessagesOfContact(contact).asLiveData()
     fun cancelAll() {
         viewModelScope.launch {
@@ -32,6 +33,11 @@ class AppViewModel(private val repo: AppRepository) : ViewModel() {
         }
     }
 
+    fun toast(textRessource: Int, vararg formatArgs: String){
+        viewModelScope.launch {
+             repo.toast(textRessource,*formatArgs)
+        }
+    }
     val deviceId: LiveData<String> by lazy {
         val sharedPrefs =
             repo.app.getSharedPreferences("me.lecaro.monkeysms", Context.MODE_PRIVATE)

@@ -1,5 +1,6 @@
 package me.lecaro.monkeysms.network
 
+import android.util.Log
 import androidx.annotation.Keep
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -35,6 +36,7 @@ private val retrofit = Retrofit.Builder()
     .client(okHttpClient)
     .build()
 
+
 interface Api {
 
     @POST("api/app/register")
@@ -48,6 +50,7 @@ interface Api {
 
 }
 
+
 @Keep
 data class RegisterAppRequest(
     val FCMToken: String,
@@ -55,8 +58,14 @@ data class RegisterAppRequest(
     val deviceName: String,
     val androidId: String,
     val userNumbers: List<String>,
-
 )
+
+fun logRegisterAppRequest(TAG:String, req:RegisterAppRequest){
+    val adapted=moshi.adapter(RegisterAppRequest::class.java)
+    val json=adapted.toJson(req)
+    Log.d(TAG,json)
+}
+
 @Keep
 data class UpdateFCMTokenRequest(
     val FCMToken: String,
@@ -79,8 +88,6 @@ data class SynchronisationResponse(
     val changed: List<Message>?,
     val error: String?,
     val errorCode: String?
-
-
 )
 
 

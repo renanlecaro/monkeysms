@@ -18,6 +18,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -84,6 +85,7 @@ class HomeActivity : AppCompatActivity() {
         super.onResume()
         createNotificationChannel()
         updateUI()
+        toastLastEvent()
 //        startServerService(this)
         vm.pendingCount?.observe(this) {
             pendingCount = it
@@ -173,21 +175,19 @@ class HomeActivity : AppCompatActivity() {
 
     private fun handleSignInResult(data: Intent?) {
         try {
-
-
             val account = GoogleSignIn
                 .getSignedInAccountFromIntent(data).getResult(ApiException::class.java)
 
             // Signed in successfully, show authenticated UI.
             freshlyConnectedAccount = account
-            repo.toast(R.string.signin_success, account.email.toString())
+            vm.toast(R.string.signin_success, account.email.toString())
             updateUI()
             onLogin(account)
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.e(TAG, "login failed $e")
-            repo.toast(R.string.error_with, "Login", e.toString())
+            vm.toast(R.string.error_with, "Login", e.toString())
             updateUI()
 
         }
@@ -484,6 +484,24 @@ class HomeActivity : AppCompatActivity() {
             Log.d(TAG, "list updated ${it.size}")
             lastList = it
             swipeRefreshLayout.isRefreshing = false
+        }
+    }
+
+    var lastLogId:Long?=null
+    fun toastLastEvent(){
+        lastLogId=null
+        vm.lastEvent.observe(this){
+            try{
+                if(it.isNotEmpty()){
+                    if(lastLogId!=null && lastLogId!=it.first().id){
+                        Toast.makeText(this, it.first().text, Toast.LENGTH_LONG).show()
+                    }
+                    lastLogId=it.first().id
+                }
+            } catch (e:Exception){
+                Log.e(TAG, "toastLastEvent", e)
+            }
+
         }
     }
 }

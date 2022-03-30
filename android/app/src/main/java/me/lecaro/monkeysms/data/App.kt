@@ -13,6 +13,7 @@ class App : Application() {
         AppRepository(
             database.messageDao(),
             database.contactDao(),
+            database.monkeyEventsDao(),
             this
         )
     }

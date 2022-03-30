@@ -9,12 +9,12 @@ import me.lecaro.monkeysms.BuildConfig
 
 const val version = BuildConfig.VERSION_CODE
 
-@Database(entities = [Message::class, Contact::class], version = version, exportSchema = false)
+@Database(entities = [Message::class, Contact::class,MonkeyEvent::class], version = version, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun messageDao(): MessageDao
     abstract fun contactDao(): ContactDao
-
+    abstract fun monkeyEventsDao(): MonkeyEventsDao
 
     companion object {
         @Volatile

@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -193,7 +194,25 @@ class ConversationActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         vm.clearNotification()
+        toastLastEvent()
     }
 
+    var lastLogId:Long?=null
+    fun toastLastEvent(){
+        lastLogId=null
+        vm.lastEvent.observe(this){
+            try{
+                if(it.isNotEmpty()){
+                    if(lastLogId!=null && lastLogId!=it.first().id){
+                        Toast.makeText(this, it.first().text, Toast.LENGTH_LONG).show()
+                    }
+                    lastLogId=it.first().id
+                }
+            } catch (e:Exception){
+                Log.e(TAG, "toastLastEvent", e)
+            }
+
+        }
+    }
 
 }

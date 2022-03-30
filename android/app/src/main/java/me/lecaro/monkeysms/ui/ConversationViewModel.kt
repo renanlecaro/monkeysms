@@ -64,8 +64,6 @@ class ConversationViewModel(val repo: AppRepository) : ViewModel() {
                         deviceId = sender.deviceId
                     )
                 )
-
-
                 startServerService(repo.app)
             }catch (e:Exception){
                 Log.e(TAG, e.toString())
@@ -73,4 +71,8 @@ class ConversationViewModel(val repo: AppRepository) : ViewModel() {
         }
 
     }
+
+    val lastEvent = repo.monkeyEventsDao.getRecent(1)
+
+
 }

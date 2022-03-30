@@ -99,6 +99,7 @@ class ServerService() : Service() {
                     connectToServer(googleLoginToken, FCMToken)
                 } else if (FCMToken !== null && deviceId !== null) {
                     Log.d(TAG, "onStartCommand/updateFCMToken")
+
                     MonkeyApi.retrofitService.updateFCMToken(
                         UpdateFCMTokenRequest(
                             FCMToken = FCMToken,
@@ -136,14 +137,17 @@ class ServerService() : Service() {
 
 
             Log.d(TAG, "Registering .. ")
-            val result: RegistrationResult = MonkeyApi.retrofitService.registerApp(
-                RegisterAppRequest(
+            val request=RegisterAppRequest(
                     FCMToken = FCMToken,
                     googleLoginToken = googleLoginToken,
                     deviceName = deviceName,
                     androidId = androidId,
                     userNumbers = repo.loadUserNumbers()
                 )
+            Log.d(TAG, request.toString())
+
+            val result: RegistrationResult = MonkeyApi.retrofitService.registerApp(
+                request
             )
 
             Log.d(TAG, "Registered ! $result ")
@@ -215,11 +219,11 @@ class ServerService() : Service() {
                 // Device has been deleted
                 wipe()
             }else{
-
                 setKey("last-sync", "Last sync failed : ${e.message()}")
             }
             Log.e(TAG, "syncMessages crashed : ${e}")
 
+            repo.toast(R.string.error_with, "Sync", e.toString())
         } catch (e: Exception) {
             Log.e(TAG, "syncMessages crashed : ${e}")
             setKey("last-sync", "Last sync failed : ${e.toString()}")

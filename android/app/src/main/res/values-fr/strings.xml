@@ -39,5 +39,8 @@
     <string name="message_content">Contenu du message</string>
     <string name="send">Envoyer</string>
     <string name="mms_not_supported">Un MMS à été reçu mais MonkeySMS ne permet pas de les lire</string>
+    <string name="message_delived">Message reçu par le destinataire</string>
+    <string name="sending_failed">Echec d\'envoi</string>
+    <string name="sending_worked">Envoyé !</string>
 
 </resources>

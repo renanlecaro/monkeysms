@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.telephony.SubscriptionInfo
-import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -23,14 +22,16 @@ import android.telephony.SubscriptionManager
 import kotlin.collections.HashMap
 
 
-class AppRepository(val messageDao: MessageDao, val contactDao: ContactDao, val app: App) {
+class AppRepository(val messageDao: MessageDao, val contactDao: ContactDao,
+                    val monkeyEventsDao:MonkeyEventsDao,
+                    val app: App) {
     val TAG = "AppRepository"
-    fun toast(textRessource: Int, vararg formatArgs: String) {
-        try {
 
+
+    suspend fun toast( textRessource: Int, vararg formatArgs: String) {
+        try {
             val asString = app.getString(textRessource, *formatArgs)
-            Log.d(TAG, "Toasting  : $asString")
-            Toast.makeText(app, asString, Toast.LENGTH_LONG).show()
+            monkeyEventsDao.insert(MonkeyEvent(asString,"default"))
         } catch (e: Exception) {
             Log.e(TAG, "Toast failed : $e")
         }
