@@ -21,8 +21,12 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            // Turning minification on triggers a strange error in the realease version,
+            // the json body of the login request can't be stringified :
+            // java.lang.IllegalArgumentException: Unable to create @Body converter for
+            // class me.lecaro.monkeysms.network.RegisterAppRequest
+            minifyEnabled false
+            shrinkResources false
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
