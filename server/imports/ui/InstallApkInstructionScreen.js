@@ -10,7 +10,7 @@ export function InstallApkInstructionScreen() {
       <h1>{t("title")}</h1>
       <DivHtml i18nKey={"intro"} />
       <p className={"cta-wrap"}>
-        <a className="button" download href="/monkeySMS-v11-release.apk">
+        <a className="button" download href="/monkeySMS-v1-release.apk">
           {t("button_label")}
         </a>
       </p>
