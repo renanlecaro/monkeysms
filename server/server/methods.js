@@ -15,7 +15,7 @@ import libphonenumber from "google-libphonenumber";
 export const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
 export const PNF = libphonenumber.PhoneNumberFormat;
 
-function randomToken() {
+export function randomToken() {
   return new Promise((resolve, reject) =>
     crypto.randomBytes(48, function (err, buffer) {
       if (err) return reject(err);

@@ -81,10 +81,6 @@ class ServerService() : Service() {
                     stopSelf()
                     return@launch
                 }
-                Log.d(TAG, "onStartCommand/deviceId :${deviceId}")
-                Log.d(TAG, "onStartCommand/FCMToken :${FCMToken}")
-                Log.d(TAG, "onStartCommand/googleLoginToken :${googleLoginToken}")
-
 
                 FCMToken?.let {
                     setKey("FCMToken", it)
@@ -103,7 +99,8 @@ class ServerService() : Service() {
                     MonkeyApi.retrofitService.updateFCMToken(
                         UpdateFCMTokenRequest(
                             FCMToken = FCMToken,
-                            deviceId = deviceId
+                            deviceId = deviceId,
+                        deviceSecret = repo.getDeviceSecret()
                         )
                     )
                 } else {
@@ -134,8 +131,6 @@ class ServerService() : Service() {
             Log.d(TAG, "done wiping, now we can login")
             val deviceName = Settings.Secure.getString(contentResolver, "bluetooth_name")
             val androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID);
-
-
             Log.d(TAG, "Registering .. ")
             val request=RegisterAppRequest(
                     FCMToken = FCMToken,
@@ -144,14 +139,16 @@ class ServerService() : Service() {
                     androidId = androidId,
                     userNumbers = repo.loadUserNumbers()
                 )
-            Log.d(TAG, request.toString())
+            Log.d(TAG,"Registering request $request")
 
             val result: RegistrationResult = MonkeyApi.retrofitService.registerApp(
                 request
             )
+            Log.d(TAG,"Registering result $result")
 
             Log.d(TAG, "Registered ! $result ")
             setKey("deviceId", result.deviceId)
+            setKey("deviceSecret", result.deviceSecret)
             pullSMS(repo)
             syncMessages()
 
@@ -164,9 +161,9 @@ class ServerService() : Service() {
     suspend fun syncMessages() {
  
         val deviceId = repo.getDeviceId()
-        if (deviceId === null) return
+        if (deviceId === null  ) return
 
-        setKey("last-sync", "Syncing...")
+//        setKey("last-sync", "Syncing...")
         Log.d(TAG, "syncMessages starts")
         try {
             pullContacts(prefs(),repo)
@@ -179,6 +176,7 @@ class ServerService() : Service() {
                 val result = MonkeyApi.retrofitService.synchronize(
                     SynchronisationParams(
                         deviceId = deviceId,
+                        deviceSecret = repo.getDeviceSecret(),
                         messages = messagesToSync,
                         contacts = contactsToSync,
                         userNumbers=repo.loadUserNumbers()

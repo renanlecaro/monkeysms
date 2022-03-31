@@ -60,25 +60,23 @@ data class RegisterAppRequest(
     val userNumbers: List<String>,
 )
 
-fun logRegisterAppRequest(TAG:String, req:RegisterAppRequest){
-    val adapted=moshi.adapter(RegisterAppRequest::class.java)
-    val json=adapted.toJson(req)
-    Log.d(TAG,json)
-}
 
 @Keep
 data class UpdateFCMTokenRequest(
     val FCMToken: String,
-    val deviceId: String
+    val deviceId: String,
+    val deviceSecret: String?
 )
 @Keep
 data class RegistrationResult(
-    val deviceId: String
+    val deviceId: String,
+    val deviceSecret:String
 )
 
 @Keep
 data class SynchronisationParams(
     val deviceId: String,
+    val deviceSecret: String?,
     val messages: List<Message>,
     val contacts: List<Contact>,
     val userNumbers: List<String>

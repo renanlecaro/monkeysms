@@ -7,9 +7,10 @@ import {
     deviceToWriteTo,
     notifyAllUserDevicesExcept, notifyAPIKey,
     phoneUtil,
-    PNF,
+    PNF, randomToken,
 } from "./methods";
 import {notifyUser} from "./WebNotifications";
+import {Random} from "meteor/random";
 
 const app_visible_messages_fields = {
     // Used as device key for now
@@ -152,8 +153,10 @@ export function setupAPI(app) {
             const staleDevices = Devices.find({androidId});
             Devices.remove({_id: {$in: staleDevices.map((d) => d._id)}});
             Messages.remove({deviceId: {$in: staleDevices.map((d) => d._id)}});
+            const deviceSecret= await randomToken()
 
             const deviceId = Devices.insert({
+                deviceSecret,
                 FCMToken,
                 google_user_id,
                 deviceName,
@@ -164,7 +167,8 @@ export function setupAPI(app) {
                 ...parseUserNumbers(userNumbers),
             });
 
-            res.status(200).json({deviceId});
+            console.log("Registered new device", Devices.findOne(deviceId));
+            res.status(200).json({deviceId,deviceSecret});
         } catch (e) {
             console.error(e);
             res.status(500).json({error: e.message});
@@ -173,10 +177,10 @@ export function setupAPI(app) {
 
     app.post("/api/app/update_fcm", async (req, res) => {
         try {
-            let {FCMToken, deviceId} = req.body;
+            let {FCMToken, deviceId,deviceSecret} = req.body;
 
             Devices.update(
-                {_id: deviceId},
+                {_id: deviceId, deviceSecret},
                 {
                     $set: {
                         FCMToken,
@@ -197,9 +201,9 @@ export function setupAPI(app) {
             console.info("synchronize request : ", req.body);
 
             const now = Date.now();
-            let {deviceId, messages, contacts, userNumbers} = req.body;
+            let {deviceId, messages, contacts, userNumbers,deviceSecret} = req.body;
 
-            const device = Devices.findOne({_id: deviceId});
+            const device = Devices.findOne({_id: deviceId,deviceSecret});
             if (!device) {
                 console.warn("Cound not find device " + deviceId);
 

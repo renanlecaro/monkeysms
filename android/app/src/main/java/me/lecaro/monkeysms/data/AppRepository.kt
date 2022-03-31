@@ -153,6 +153,9 @@ class AppRepository(val messageDao: MessageDao, val contactDao: ContactDao,
     fun getDeviceId(): String? {
         return getKey("deviceId")
     }
+    fun  getDeviceSecret(): String? {
+        return getKey("deviceSecret")
+    }
 
     fun getDeviceIdOrUnknown(): String {
         return getDeviceId() ?: "Unknown device"
