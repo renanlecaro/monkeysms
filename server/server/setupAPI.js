@@ -12,9 +12,11 @@ import {
 import {notifyUser} from "./WebNotifications";
 
 const app_visible_messages_fields = {
-    deviceId: true,
+    // Used as device key for now
+    deviceId: false, // https://trello.com/c/YQ7ZPfoh/128-add-a-device-secret-field-to-make-the-device-id-public
     google_user_id: false,
-    source: true,
+    // Needs to be included to check where the message is from in message updates
+    // source: true,
 };
 
 export function setupAPI(app) {
@@ -115,10 +117,14 @@ export function setupAPI(app) {
                 },
             });
 
+            const created= Messages.findOne(messageId, {fields: app_visible_messages_fields})
+
+            await notifyAPIKey(req.rights, "message_created", {message: created});
+
             res
                 .status(200)
                 .json(
-                    Messages.findOne(messageId, {fields: app_visible_messages_fields})
+                   created
                 );
         } catch (e) {
             res.status(500).json({
@@ -209,6 +215,7 @@ export function setupAPI(app) {
             const user = Meteor.users.findOne({
                 "services.google.id": google_user_id,
             });
+
             Devices.update(
                 {_id: deviceId},
                 {
