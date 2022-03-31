@@ -21,14 +21,18 @@ function getDomain(url) {
 export function AccessRequestScreen({ qs, user, devices }) {
   const userEmail = user?.services.google.email;
   const webhook_callback_url = qs("webhook_callback_url");
+  const redirect_url = qs("redirect_url");
   const domain = getDomain(webhook_callback_url);
+  const redirectDomain=getDomain(redirect_url);
+  const [left, setLeft] = useState(false);
+
   useEffect(
     () =>
+        // ensures that the app receives the api key again
       callMethod("ApiKeys.reGrantAccessIfAlreadyThere", {
-        webhook_callback_url,
+        webhook_callback_url
       }).then(
-        (res) =>
-          res.redirect_url ? (window.location = res.redirect_url) : null,
+        (res) => null,
         (err) => alert(err.toString())
       ),
     []
@@ -83,7 +87,6 @@ export function AccessRequestScreen({ qs, user, devices }) {
       id: "allow",
       done: !!key,
       title: "Allow " + domain + " to send SMS from your phone",
-
       message_done: "Access granted",
       action: (
         <button
@@ -102,12 +105,42 @@ export function AccessRequestScreen({ qs, user, devices }) {
         </button>
       ),
     },
+      {
+          image: "monkey_04.svg",
+          id: "redirect",
+          done: left,
+          title: "Return to  " + redirectDomain,
+          message_done: "Openend in new tab",
+          action: (
+              <a className={"button"} href={redirect_url} onMouseUp={e=>setLeft(true)} onClick={e=>setLeft(true)}>
+                  Go back to authorized app
+              </a>
+          ),
+      }
   ];
   const currentStep = steps.find((s) => !s.done) || {
     image: "monkey_04.svg",
     id: "done",
   };
+  if(!webhook_callback_url){
+     return <div>
+          <h1>Error</h1>
+         <p>Missing webhook_callback_url query string argument</p>
+      </div>
+  }
+  if(!redirect_url){
+     return <div>
+          <h1>Error</h1>
+         <p>Missing redirect query string argument</p>
+      </div>
+  }
 
+  if(redirectDomain !== domain){
+      return <div>
+          <h1>Error</h1>
+          The domain of the webhook ({domain}) does not match the domain of the redirect ({redirectDomain})
+      </div>
+  }
   return (
     <div className={" AccessRequestScreen"}>
       <h1>{domain} would like to send SMS from your phone</h1>

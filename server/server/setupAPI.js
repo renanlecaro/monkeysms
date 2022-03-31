@@ -128,7 +128,7 @@ export function setupAPI(app) {
                 );
         } catch (e) {
             res.status(500).json({
-                error: "Technical error : " + e.toString(),
+                error:  e.message || e.toString(),
             });
         }
     });

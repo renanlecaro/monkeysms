@@ -265,20 +265,15 @@ Meteor.methods({
 async function disableKeys(google_user_id, filter={}){
     if(!google_user_id) return
     const keys = ApiKeys.find({...filter, google_user_id, active:true}).fetch();
-    await Promise.all(keys.map(key=>notifyAPIKey(key, "key_disabled", {key})));
+    await Promise.all(keys.filter(key=>key.webhook_callback_url).map(key=>notifyAPIKey(key, "key_disabled", {key}).catch(err=>console.warn("Error deleting key",err))));
     ApiKeys.update({_id:{$in:keys.map(key=>key._id)}}, {$set:{active:false}}, {multi:true});
 }
 
 async function notifyServerOfKey(keydoc) {
-  const res = await notifyAPIKey(keydoc, "access_granted", {
+  return await notifyAPIKey(keydoc, "access_granted", {
     api_key: keydoc.key,
   });
-  console.log("server_response : ", res);
-  if (!res.redirect_url)
-    throw new Meteor.Error("The app failed to provide a redirect url");
-  return {
-    redirect_url: res.redirect_url,
-  };
+
 }
 
 export async function notifyAPIKey(key, event, data) {
@@ -292,7 +287,11 @@ export async function notifyAPIKey(key, event, data) {
       event,
       ...data,
     }),
-  }).then((res) => res.json());
+  }).then((res) =>
+      (res.ok)? 'ok': res.text().then(err=>{
+              throw new Meteor.Error(res.status+ ' : '+ err)
+          })
+   );
 }
 
 async function notifyDeviceOfNewMessage(device) {

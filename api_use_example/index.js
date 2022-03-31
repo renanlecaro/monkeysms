@@ -31,8 +31,9 @@ function setupApp(rootUrl) {
         // This like will tell monkeysms.com that we want a key, and where
         // to send it (webhook_callback_url).
         const webhook_url = rootUrl + "/monkey_sms_callback";
+        const redirect_url= rootUrl + "/send_message"
         const authorisationURL =
-            api_url + "?webhook_callback_url=" + encodeURIComponent(webhook_url);
+            api_url + "?webhook_callback_url=" + encodeURIComponent(webhook_url) +'&redirect_url='+encodeURIComponent(redirect_url);
         // We just show that link to the user and let them click it. They'll see a
         // page asking them to log in with google, then install the app on their phone,
         // and finally install the app, at which point our callback url will be called.
@@ -52,9 +53,6 @@ function setupApp(rootUrl) {
         // There will be more event types in the future
         if (req.body.event === "access_granted") {
             api_key = req.body.api_key;
-            return res
-                .status(200)
-                .json({redirect_url: rootUrl + "/send_message"});
         }
 
         if (req.body.event === "key_disabled") {
@@ -62,7 +60,7 @@ function setupApp(rootUrl) {
         }
 
         // Future proof the app, so that it ignores future events
-        res.status(200).json({ignored:true});
+        res.status(200).end('OK');
     });
 
     // This is just the html code of our form, used in multiple places
