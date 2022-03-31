@@ -57,8 +57,7 @@ This app is responsible for the marketing of the project, web UI and API
 
 The "api_use_example" folder contains a minimal node app that makes use of the MonkeySMS API.
 It lets the user log in, install the MonkeySMS app, and then send a message remotely from their phone.
-
-See the dev documentation here : https://monkeysms.com/developers.html
+There's also a readme there documenting the usage of our API
 
 # Automatic deployment of the server app
 

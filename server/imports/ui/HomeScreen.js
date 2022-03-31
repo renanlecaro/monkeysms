@@ -50,7 +50,7 @@ export function HomeScreen({user, setPath}) {
                         <h2>{t("slide_1.title")}</h2>
                         <ParagraphHtml i18nKey={"slide_1.p0"}/>
                         <ParagraphHtml i18nKey={"slide_1.p1"}/>
-                        <a className={"button"} href={"/developers.html"} target={"_blank"}>
+                        <a className={"button"} href={"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example"} target={"_blank"}>
                             {t("slide_1.action")}
                         </a>
                     </div>
@@ -76,7 +76,7 @@ export function HomeScreen({user, setPath}) {
             <footer>
                 <div>
                     <a href={"/about.html"}>{t("footer.about")}</a>
-                    <a href={"/developers.html"}>{t("footer.api")}</a>
+                    <a href={"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example"}>{t("footer.api")}</a>
                     <a href={"/privacy-policy.html"}>{t("footer.privacy")}</a>
                     <a href={"/TOS.html"}>{t("footer.tos")}</a>
                 </div>

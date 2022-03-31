@@ -155,18 +155,6 @@ export function UserProfile({ user, devices }) {
           ))}
         </ul>
 
-        <button
-          className={"button"}
-          onClick={(e) => {
-            e.preventDefault();
-            callMethod("ApiKeys.grantAccess", {
-              domain: location.hostname,
-            }).then((res) => prompt(t("api_keys.create_result"), res.key));
-          }}
-        >
-          {" "}
-          {t("api_keys.create_button")}
-        </button>
       </div>
 
       <NotificationSettingsSection user={user} />

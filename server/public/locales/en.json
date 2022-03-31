@@ -52,9 +52,7 @@
 		},
 		"api_keys": {
 			"count": "You have connected {{count}} apps to your account.",
-			"create_button": "Create a key",
-			"create_result": "Here's your key",
-			"how_to": "See how to use the <a href=\"/developers.html\" target=\"_blank\"> MonkeySMS API </a>in your own web app. ",
+			"how_to": "See how to use the <a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMSin your own web app. ",
 			"remove": "Remove",
 			"title": "Connected Applications"
 		},

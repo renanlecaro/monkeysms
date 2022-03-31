@@ -629,40 +629,6 @@
                                 </translations>
                             </concept_node>
                             <concept_node>
-                                <name>create_button</name>
-                                <definition_loaded>false</definition_loaded>
-                                <description/>
-                                <comment/>
-                                <default_text/>
-                                <translations>
-                                    <translation>
-                                        <language>en-US</language>
-                                        <approved>true</approved>
-                                    </translation>
-                                    <translation>
-                                        <language>fr-FR</language>
-                                        <approved>true</approved>
-                                    </translation>
-                                </translations>
-                            </concept_node>
-                            <concept_node>
-                                <name>create_result</name>
-                                <definition_loaded>false</definition_loaded>
-                                <description/>
-                                <comment/>
-                                <default_text/>
-                                <translations>
-                                    <translation>
-                                        <language>en-US</language>
-                                        <approved>true</approved>
-                                    </translation>
-                                    <translation>
-                                        <language>fr-FR</language>
-                                        <approved>true</approved>
-                                    </translation>
-                                </translations>
-                            </concept_node>
-                            <concept_node>
                                 <name>how_to</name>
                                 <definition_loaded>false</definition_loaded>
                                 <description/>
