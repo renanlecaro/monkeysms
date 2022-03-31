@@ -277,7 +277,8 @@ async function notifyServerOfKey(keydoc) {
   };
 }
 
-async function notifyAPIKey(key, event, data) {
+export async function notifyAPIKey(key, event, data) {
+ console.debug("notifyAPIKey", key.webhook_callback_url, event, data);
   return fetch(key.webhook_callback_url, {
     method: "POST",
     headers: {
