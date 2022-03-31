@@ -42,8 +42,7 @@ export function AccessRequestScreen({ qs, user, devices }) {
       image: "monkey_01.svg",
       id: "login",
       done: !!user,
-      title: "Login with Google",
-      message_todo: "Let us know who you are.",
+      title: "Login with Google", 
       message_done: "Connected as " + userEmail,
       action: (
         <GoogleSignInButton
@@ -112,7 +111,7 @@ export function AccessRequestScreen({ qs, user, devices }) {
   return (
     <div className={" AccessRequestScreen"}>
       <h1>{domain} would like to send SMS from your phone</h1>
-      <img src={currentStep.image} />
+      <img src={currentStep.image}  alt={"Monkey on his computer"}/>
       <ol>
         {steps.map(({ done, title, action, message_done, id }, i) => (
           <li
@@ -127,7 +126,7 @@ export function AccessRequestScreen({ qs, user, devices }) {
           </li>
         ))}
       </ol>
-      {currentStep.id == "done" ? (
+      {currentStep.id === "done" ? (
         <p>
           All set, come check out your <a href={"/"}>dashboard</a>
         </p>

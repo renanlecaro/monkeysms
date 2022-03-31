@@ -8,7 +8,7 @@ import {
 } from "/imports/collections";
 
 import { fetch } from "meteor/fetch";
-import { cleanPhoneNumber, escapeRegExp } from "../imports/lib/escapeRegExp";
+import {   escapeRegExp } from "../imports/lib/escapeRegExp";
 import crypto from "crypto";
 import libphonenumber from "google-libphonenumber";
 
@@ -193,6 +193,8 @@ Meteor.methods({
     if (!Meteor.user()) return;
     const google_user_id = Meteor.user()?.services.google.id;
 
+    // Notify all keys before deleting them
+    await disableKeys(google_user_id, {});
     const devices = Devices.find({ google_user_id }).fetch();
 
     wipeCollections(google_user_id);
@@ -254,16 +256,18 @@ Meteor.methods({
     });
     return existing ? notifyServerOfKey(existing) : {};
   },
-  "ApiKeys.disable"(_id) {
-    return ApiKeys.update(
-      {
-        google_user_id: Meteor.user()?.services.google.id || "NONO",
-        _id,
-      },
-      { $set: { active: false } }
-    );
+  async "ApiKeys.disable"(_id) {
+      await disableKeys(Meteor.user()?.services.google.id, {_id} )
+      return 'ok'
   },
 });
+
+async function disableKeys(google_user_id, filter={}){
+    if(!google_user_id) return
+    const keys = ApiKeys.find({...filter, google_user_id, active:true}).fetch();
+    await Promise.all(keys.map(key=>notifyAPIKey(key, "key_disabled", {key})));
+    ApiKeys.update({_id:{$in:keys.map(key=>key._id)}}, {$set:{active:false}}, {multi:true});
+}
 
 async function notifyServerOfKey(keydoc) {
   const res = await notifyAPIKey(keydoc, "access_granted", {

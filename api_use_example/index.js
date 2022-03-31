@@ -57,6 +57,10 @@ function setupApp(rootUrl) {
                 .json({redirect_url: rootUrl + "/send_message"});
         }
 
+        if (req.body.event === "key_disabled") {
+            api_key = null;
+        }
+
         // Future proof the app, so that it ignores future events
         res.status(200).json({ignored:true});
     });

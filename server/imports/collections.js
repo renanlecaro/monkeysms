@@ -4,11 +4,7 @@ export function wipeCollections(google_user_id) {
   Devices.remove({ google_user_id });
   Messages.remove({ google_user_id });
   Contacts.remove({ google_user_id });
-  ApiKeys.update(
-    { google_user_id },
-    { $set: { active: false } },
-    { multi: true }
-  );
+  ApiKeys.remove({ google_user_id });
   NotificationReceivers.remove({ google_user_id });
 }
 
