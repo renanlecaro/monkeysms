@@ -29,7 +29,7 @@ class ComposeSmsViewModel(val repo: AppRepository) : ViewModel() {
                     to = to,
                     outbound = true,
                     text = text,
-                    status = "PENDING",
+                    status = "ON_DEVICE",
                     synced = false,
                     deviceId = sender.deviceId
                 )

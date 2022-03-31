@@ -34,7 +34,7 @@ interface MessageDao {
     @Query("SELECT * FROM message WHERE deviceId=:deviceId AND status=:status ORDER BY createdAt ASC")
     suspend fun getFirstInStatus(status: String, deviceId:String): Message?
 
-    @Query("UPDATE message SET status='PENDING', synced=0   WHERE status='SENDING' AND deviceId=:deviceId")
+    @Query("UPDATE message SET status='ON_DEVICE', synced=0   WHERE status='SENDING' AND deviceId=:deviceId")
     suspend fun retryCurrentMessage(deviceId:String):Int
 
     @Query("SELECT count(*) FROM message WHERE status=:status")
@@ -48,7 +48,7 @@ interface MessageDao {
         // don't send two at the same time
         if (getFirstInStatus("SENDING",deviceId) !== null)
             return NextSendResult(null, "BUSY")
-        val toSend = getFirstInStatus("PENDING",deviceId)
+        val toSend = getFirstInStatus("ON_DEVICE",deviceId)
         if (toSend !== null) {
             updateStatus(toSend._id, "SENDING")
             return NextSendResult(toSend, "READY")
@@ -57,7 +57,7 @@ interface MessageDao {
         }
     }
 
-    @Query("UPDATE message SET status ='CANCELLED', synced=0  WHERE status='SENDING' OR  status='PENDING' AND deviceId=:deviceId")
+    @Query("UPDATE message SET status ='CANCELLED', synced=0  WHERE status='SENDING' OR  status='ON_DEVICE'  AND deviceId=:deviceId")
     suspend fun cancelAll(deviceId:String):Int
 
 

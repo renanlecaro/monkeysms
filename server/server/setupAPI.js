@@ -106,7 +106,7 @@ export function setupAPI(app) {
             console.log({messageId})
             ApiKeys.update(rights._id, {
                 $set: {
-                    lastUsed: new Date(),
+                    lastUsed: Date.now(),
                 },
                 $inc: {
                     uses: 1,
@@ -324,17 +324,30 @@ export function setupAPI(app) {
             if (messages.length) {
                 await notifyAllUserDevicesExcept(google_user_id, device._id);
             }
-            const updated = Messages.find({
-                // deviceId,
+            const toMarkAsOnDevice=[]
+            const changed = Messages.find({
                 last_updated: {$gt: lastSync},
                 _id: {$nin: messages.map((msg) => msg._id)},
-            }).fetch();
+            }).fetch()
+                .map(msg=>{
+                    if(msg.deviceId==deviceId && msg.status=="PENDING" ){
+                        return {...msg,status:"ON_DEVICE"}
+                        toMarkAsOnDevice.push(msg._id)
+                    }else{
+                        return msg
+                    }
 
-            const responseJson = {
-                changed: updated,
-            };
-            console.log("responseJson: ", responseJson);
-            res.status(200).json(responseJson);
+                } )
+
+
+            res.status(200).json({
+                changed,
+            });
+
+            Messages.update({
+                _id: {$in: toMarkAsOnDevice},
+            }, {$set: {status:"ON_DEVICE"}}, {multi: true})
+
         } catch (e) {
             console.error(e);
             res.status(500).json({error: e.message});

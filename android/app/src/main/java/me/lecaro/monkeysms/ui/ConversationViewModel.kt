@@ -59,7 +59,7 @@ class ConversationViewModel(val repo: AppRepository) : ViewModel() {
                         to=contact,
                         outbound=true,
                         text=text,
-                        status="PENDING",
+                        status="ON_DEVICE",
                         synced=false,
                         deviceId = sender.deviceId
                     )

@@ -48,7 +48,7 @@ class AppViewModel(private val repo: AppRepository) : ViewModel() {
             repo.app.getSharedPreferences("me.lecaro.monkeysms", Context.MODE_PRIVATE)
         SharedPreferenceStringLiveData(sharedPrefs, "last-sync", "")
     }
-    val pendingCount = repo.messageDao.countMessagesInStatus("PENDING")
+    val pendingCount = repo.messageDao.countMessagesInStatus("ON_DEVICE")
     val sendingCount = repo.messageDao.countMessagesInStatus("SENDING")
     val messageToSync = repo.messageDao.countNotSynced()
     val contactsToSync = repo.contactDao.countNotSynced()

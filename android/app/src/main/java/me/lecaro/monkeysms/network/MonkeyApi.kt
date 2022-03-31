@@ -60,7 +60,6 @@ data class RegisterAppRequest(
     val userNumbers: List<String>,
 )
 
-
 @Keep
 data class UpdateFCMTokenRequest(
     val FCMToken: String,

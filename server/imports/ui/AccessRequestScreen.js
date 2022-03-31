@@ -114,7 +114,7 @@ export function AccessRequestScreen({ qs, user, devices }) {
           title: "Return to  " + redirectDomain,
           message_done: "Openend in new tab",
           action: (
-              <a className={"button"} href={redirect_url} onMouseUp={e=>setLeft(true)} onClick={e=>setLeft(true)}>
+              <a className={"button"} href={redirect_url}   onClick={e=>setLeft(true)}>
                   Go back to authorized app
               </a>
           ),
