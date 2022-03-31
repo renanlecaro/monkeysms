@@ -10,14 +10,9 @@ import {
     PNF, randomToken,
 } from "./methods";
 import {notifyUser} from "./WebNotifications";
-import {Random} from "meteor/random";
 
 const app_visible_messages_fields = {
-    // Used as device key for now
-    deviceId: false, // https://trello.com/c/YQ7ZPfoh/128-add-a-device-secret-field-to-make-the-device-id-public
     google_user_id: false,
-    // Needs to be included to check where the message is from in message updates
-    // source: true,
 };
 
 export function setupAPI(app) {
