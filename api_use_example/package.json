@@ -11,7 +11,7 @@
     "sms"
   ],
   "author": "Renan LE CARO",
-  "license": "MIT", 
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.1",
     "express": "^4.17.2",

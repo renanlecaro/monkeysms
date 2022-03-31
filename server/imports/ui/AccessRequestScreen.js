@@ -26,6 +26,8 @@ export function AccessRequestScreen({ qs, user, devices }) {
   const redirectDomain=getDomain(redirect_url);
   const [left, setLeft] = useState(false);
 
+  const monkeyAppDomain = getDomain(Meteor.absoluteUrl());
+
   useEffect(
     () =>
         // ensures that the app receives the api key again
@@ -141,6 +143,16 @@ export function AccessRequestScreen({ qs, user, devices }) {
           The domain of the webhook ({domain}) does not match the domain of the redirect ({redirectDomain})
       </div>
   }
+
+  if(monkeyAppDomain !=='localhost' &&  domain==='localhost'){
+      return <div>
+          <h1>Error</h1>
+          The domain of the webhook ({domain}) should not be localhost, as we won't be able to send webhook calls there from our
+          server. Please use something like <a href="https://ngrok.com/">ngrok</a> to create a tunnel to your localhost. This way we'll
+          be able to notify your development app of its API key.
+      </div>
+  }
+
   return (
     <div className={" AccessRequestScreen"}>
       <h1>{domain} would like to send SMS from your phone</h1>
