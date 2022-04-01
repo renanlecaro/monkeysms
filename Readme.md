@@ -1,6 +1,6 @@
-# MonkeySMS 
+# MonkeySMS : easy cloud SMS 
 
-![MonkeySMS logo](./server/public/logo.svg)
+![MonkeySMS cover image](./server/public/cover.png)
 
 This repo contains the code for https://monkeysms.com/, an open source SAAS that lets you send and read SMS messages from 
 your android phone, or anywhere else.
