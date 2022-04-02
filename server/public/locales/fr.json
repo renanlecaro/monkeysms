@@ -52,7 +52,6 @@
 		},
 		"api_keys": {
 			"count": "Vous avez connecté {{count}} apps sur votre compte.",
-			"how_to": "Voir Comment utiliser l'<a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMS dans votre propre application Web.",
 			"remove": "Retirer",
 			"title": "Applications connectées"
 		},
@@ -65,6 +64,49 @@
 		"defaultCountry": {
 			"instructions": "Considérer les numéros sans préfixe international comme : ",
 			"title": "Pays par défaut"
+		},
+		"developper": {
+			"DevModeLink": {
+				"action": "activer le mode développeur",
+				"done": "Vous avez activé le mode développeur, voir le lien dans la barre latérale",
+				"label": "Si vous souhaitez connecter vos propres applications Web à MonkeySMS et envoyer des SMS depuis le téléphone de vos utilisateurs, vous pouvez commencer par "
+			},
+			"DevelopperConfigurationScreen": {
+				"intro": "Cet écran vous aidera à configurer la connexion entre votre application Web et notre système, vous permettant d'envoyer des messages SMS à partir des téléphones de vos utilisateurs.",
+				"title": "Mode développeur "
+			},
+			"DomainsVerification": {
+				"intro": "<p>Pour prouver que vous possédez un domaine ou sous-domaine, ajoutez l'enregistrement TXT suivant à votre DNS : <code>{{txtTagRequired}}</code>. </p>\n\n<p>Vous pouvez ensuite taper votre domaine ici et nous vérifierons que l'enregistrement est là. Une fois qu'un domaine est validé, vous pourrez voir toutes les informations de débogage sur son utilisation de l'API.</p>",
+				"recheck": {
+					"action": "Revérifier",
+					"failed": "On non ! Le TXT n'a pas été trouvé. Après le premier essais, il arrive que le record DNS soit mis en cache, donc réessayez demain",
+					"worked": "Hourra ! L'entrée TXT a bien été trouvée"
+				},
+				"remove": {
+					"action": "Retirer"
+				},
+				"results": {
+					"hasRecords": "{{count}} TXT trouvé(s)",
+					"label": "Résultat",
+					"noRecord": "Pas d'entrée DNS TXT"
+				},
+				"status": {
+					"error": "Domaine non joignable",
+					"pending": "En attente..",
+					"verified": "Vérifié"
+				},
+				"title": "Domaines vérifiés",
+				"toVerify": {
+					"action": "Vérifier",
+					"label": "Nom de domaine ou vous avez ajouté l'entrée TXT au DNS",
+					"placeholder": "exemple.fr"
+				}
+			},
+			"SidebarDevLink": {
+				"link": "Mode développeur ",
+				"subtitle": "Configurez vos applis"
+			},
+			"how_to": "Voir Comment utiliser l'<a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMS dans votre propre application Web."
 		},
 		"devices": {
 			"disconnect": "Déconnecter",

@@ -1,16 +1,11 @@
-import { Meteor } from "meteor/meteor";
-import {
-  ApiKeys,
-  Contacts,
-  Devices,
-  Messages,
-  wipeCollections,
-} from "/imports/collections";
+import {Meteor} from "meteor/meteor";
+import {ApiKeys, Contacts, Devices, Messages, wipeCollections,} from "/imports/collections";
 
-import { fetch } from "meteor/fetch";
-import {   escapeRegExp } from "../imports/lib/escapeRegExp";
+import {fetch} from "meteor/fetch";
+import {escapeRegExp} from "/imports/lib/escapeRegExp";
 import crypto from "crypto";
 import libphonenumber from "google-libphonenumber";
+import {notifyAPIKey} from "/server/notifyAPIKey";
 
 export const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
 export const PNF = libphonenumber.PhoneNumberFormat;
@@ -48,7 +43,13 @@ export function deviceToWriteTo(user, to) {
   const google_user_id = user.services.google.id;
 
   const defaultCountryCode = getUserDefaultCountryCode(user);
-  const toNumber = phoneUtil.parse(to, defaultCountryCode);
+
+  let toNumber;
+  try{
+       toNumber = phoneUtil.parse(to, defaultCountryCode);
+  }catch (e){
+      throw new Meteor.Error("invalid-number", e.message);
+  }
 
   if (!phoneUtil.isValidNumber(toNumber)) {
     throw new Meteor.Error(
@@ -274,24 +275,6 @@ async function notifyServerOfKey(keydoc) {
     api_key: keydoc.key,
   });
 
-}
-
-export async function notifyAPIKey(key, event, data) {
- console.debug("notifyAPIKey", key.webhook_callback_url, event, data);
-  return fetch(key.webhook_callback_url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      event,
-      ...data,
-    }),
-  }).then((res) =>
-      (res.ok)? 'ok': res.text().then(err=>{
-              throw new Meteor.Error(res.status+ ' : '+ err)
-          })
-   );
 }
 
 async function notifyDeviceOfNewMessage(device) {

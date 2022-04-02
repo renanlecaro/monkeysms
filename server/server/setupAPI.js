@@ -5,15 +5,12 @@ import bodyParser from "body-parser";
 import {
     createMessage,
     deviceToWriteTo,
-    notifyAllUserDevicesExcept, notifyAPIKey,
-    phoneUtil,
+    notifyAllUserDevicesExcept, phoneUtil,
     PNF, randomToken,
 } from "./methods";
 import {notifyUser} from "./WebNotifications";
+import {notifyAPIKey} from "/server/notifyAPIKey";
 
-const app_visible_messages_fields = {
-    google_user_id: false,
-};
 
 export function setupAPI(app) {
     app.use("/api", function (req, res, next) {
@@ -54,8 +51,7 @@ export function setupAPI(app) {
     app.get("/api/v1/messages/:id", async (req, res) => {
         const {rights, source} = req;
         const message = Messages.findOne(
-            {source, _id: req.params.id},
-            {fields: app_visible_messages_fields}
+            {source, _id: req.params.id}
         );
         if (!message) {
             return res
@@ -66,11 +62,10 @@ export function setupAPI(app) {
     });
 
     app.get("/api/v1/messages", async (req, res) => {
-        const {rights, source} = req;
+        const {  source} = req;
         const messages = Messages.find(
             {source},
             {
-                fields: app_visible_messages_fields,
                 limit: 100,
                 sort: {createdAt: -1},
             }
@@ -113,7 +108,7 @@ export function setupAPI(app) {
                 },
             });
 
-            const created= Messages.findOne(messageId, {fields: app_visible_messages_fields})
+            const created= Messages.findOne(messageId)
 
             await notifyAPIKey(req.rights, "message_created", {message: created});
 
@@ -296,7 +291,7 @@ export function setupAPI(app) {
                     })
                     if (nModified && msg.outbound) {
                         // API source notifications
-                        const updated = Messages.findOne({_id, google_user_id}, {fields: app_visible_messages_fields});
+                        const updated = Messages.findOne({_id, google_user_id});
                         if (updated.source.type === "key") {
                             try {
                                 const key=ApiKeys.findOne({_id:updated.source.id})

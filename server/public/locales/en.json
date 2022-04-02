@@ -52,7 +52,6 @@
 		},
 		"api_keys": {
 			"count": "You have connected {{count}} apps to your account.",
-			"how_to": "See how to use the <a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMSin your own web app. ",
 			"remove": "Remove",
 			"title": "Connected Applications"
 		},
@@ -65,6 +64,49 @@
 		"defaultCountry": {
 			"instructions": "Treat phone numbers without country prefix as numbers from : ",
 			"title": "Default country code "
+		},
+		"developper": {
+			"DevModeLink": {
+				"action": "enable developer mode",
+				"done": "You have enabled developer mode, see the link in the sidebar",
+				"label": "If you want to connect your own web apps MonkeySMS and send SMS messages from your user's phones you can start by "
+			},
+			"DevelopperConfigurationScreen": {
+				"intro": "This screen will help you configure the connection between your web app and our system, enabling you to send SMS messages from you user's phones.",
+				"title": "Developer dashboard"
+			},
+			"DomainsVerification": {
+				"intro": "<p>To prove that you own a domain or subdomain, add the following TXT record to your DNS : <code>{{txtTagRequired}}</code>. </p>\n\n<p>You can then type your domain here and we'll check that the record is there. Once a domain is validated, you'll be able to see all debug information about its API usage. </p>",
+				"recheck": {
+					"action": "Recheck",
+					"failed": "Oh no ! The record could not be found. You can hover the records column in the table to see what's been found",
+					"worked": "Success ! The TXT record was found"
+				},
+				"remove": {
+					"action": "Remove"
+				},
+				"results": {
+					"hasRecords": "{{count}} TXT records found",
+					"label": "Results",
+					"noRecord": "No TXT records found"
+				},
+				"status": {
+					"error": "Domain unreachable",
+					"pending": "Pending",
+					"verified": "Verified"
+				},
+				"title": "Verified domains",
+				"toVerify": {
+					"action": "Verify",
+					"label": "Domain name where you added the TXT entry to the DNS",
+					"placeholder": "example.com"
+				}
+			},
+			"SidebarDevLink": {
+				"link": "Developer dashboard",
+				"subtitle": "Configure your apps"
+			},
+			"how_to": "See how to use the <a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMSin your own web app. "
 		},
 		"devices": {
 			"disconnect": "Disconnect",

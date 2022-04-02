@@ -8,10 +8,11 @@ import "./notifications";
 import { useClientTranslation } from "./i18n";
 import { NotificationSettingsSection } from "./notifications";
 import { countryCodes } from "../lib/countries";
+import { DevModeLink } from "./DeveloperConfigurationScreen";
 
 const ContactsCount = new Mongo.Collection("contactsCount");
 
-export function UserProfile({ user, devices }) {
+export function UserProfile({ user, devices, setQS }) {
   useTracker(() => Meteor.subscribe("contactsCount"));
   let contactsCounter = useTracker(() => ContactsCount.findOne({})?.val || 0);
 
@@ -135,8 +136,7 @@ export function UserProfile({ user, devices }) {
       <div className={"block"}>
         <h2>{t("api_keys.title")}</h2>
         <p>{t("api_keys.count", { count: userKeys.length })} </p>
-        <p dangerouslySetInnerHTML={{ __html: t("api_keys.how_to") }} />
-
+        <DevModeLink setQS={setQS} />
         <ul>
           {userKeys.map((key) => (
             <li key={key._id}>
@@ -154,7 +154,6 @@ export function UserProfile({ user, devices }) {
             </li>
           ))}
         </ul>
-
       </div>
 
       <NotificationSettingsSection user={user} />

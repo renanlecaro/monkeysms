@@ -1,0 +1,36 @@
+.DeveloperConfigurationScreen {
+  code {
+    background: #333;
+    color: white;
+    padding: 20px;
+    display: block;
+    margin: 20px 0;
+    border-radius: 4px;
+  }
+  label {
+    display: block;
+  }
+  form {
+    display: flex;
+    margin: 10px 0;
+    > * {
+      padding: 10px 20px;
+    }
+    > input[type="text"] {
+      flex: 1;
+      margin-right: 10px;
+    }
+  }
+  .verified {
+    color: green;
+    font-weight: bold;
+  }
+  .error {
+    color: red;
+    font-weight: bold;
+  }
+  .pending {
+    color: #666;
+    font-weight: bold;
+  }
+}

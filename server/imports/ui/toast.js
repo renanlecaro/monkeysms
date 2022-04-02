@@ -3,7 +3,7 @@ const toastContainer = document.createElement("DIV");
 document.body.appendChild(toastContainer);
 toastContainer.id = "toastContainer";
 
-export function toast(text, className = "success") {
+export function showToast(text, className = "success") {
   const toast = document.createElement("DIV");
   toastContainer.appendChild(toast);
   toast.innerText = text;
@@ -15,5 +15,3 @@ export function toast(text, className = "success") {
     clearTimeout(timeout);
   }
 }
-
-window.toast = toast;

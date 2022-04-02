@@ -19,7 +19,8 @@ export function WriteForm({ to }) {
     callMethod
       .noToast("getDeviceForNumber", to)
       .then(({ device, to, from }) => {
-        setFrom(from);
+
+          setFrom(from);
         setToFormatted(to);
       })
       .catch((e) => setErr(e.message));

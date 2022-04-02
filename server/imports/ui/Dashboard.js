@@ -7,6 +7,10 @@ import { useTracker } from "meteor/react-meteor-data";
 import { cleanPhoneNumber, escapeRegExp } from "../lib/escapeRegExp";
 import { callMethod } from "../lib/callMethod";
 import { useClientTranslation } from "./i18n";
+import {
+  DeveloperConfigurationScreen,
+  SidebarDevLink,
+} from "./DeveloperConfigurationScreen";
 
 export function Dashboard(props) {
   const { qs, setQS } = props;
@@ -14,17 +18,18 @@ export function Dashboard(props) {
   useEffect(() => {
     callMethod("notify");
   }, []);
+  const path = qs("path");
+
+  // I should probably use a router here
+  const pageContent = {
+    dev: <DeveloperConfigurationScreen {...props} />,
+    "": <UserProfile {...props} />,
+  }[path] || <Conversation {...props} to={path} />;
 
   return (
     <div className={"Dashboard"}>
       <SideBar {...props} />
-      <section className={"content"}>
-        {qs("path") ? (
-          <Conversation {...props} to={qs("path")} />
-        ) : (
-          <UserProfile {...props} />
-        )}
-      </section>
+      <section className={"content"}>{pageContent}</section>
     </div>
   );
 }
@@ -92,6 +97,7 @@ function SideBar({ user, qs, setQS }) {
         <strong>{user.services.google.name}</strong>
         <em> {user.services.google.email}</em>
       </a>
+      <SidebarDevLink {...{ setPath, path }} />
       <div className={"searchBar"}>
         <input
           type={"search"}

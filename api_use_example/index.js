@@ -59,6 +59,10 @@ function setupApp(rootUrl) {
             api_key = null;
         }
 
+        //FIXME
+        return res.status(500).end("Test error")
+
+
         // Future proof the app, so that it ignores future events
         res.status(200).end('OK');
     });

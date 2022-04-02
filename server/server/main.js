@@ -3,3 +3,4 @@ import "./methods";
 import "./publications";
 import "./express";
 import "./WebNotifications";
+import "./domainVerifications";
