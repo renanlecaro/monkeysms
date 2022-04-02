@@ -8,7 +8,8 @@
     "dev:get-ngrok-url": "node --experimental-modules tests/scripts/ngrok.mjs",
     "logs": "mup logs --tail --follow",
     "dev:test": "jest --watch",
-    "test": "jest"
+    "test": "jest",
+    "generate-keys": "node --experimental-modules tests/scripts/generateKeyPairs.js"
   },
   "dependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.17.7",

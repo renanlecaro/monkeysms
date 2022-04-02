@@ -62,6 +62,22 @@ export function DeveloperConfigurationScreen() {
       </div>
 
       <DomainsVerification />
+      <HooksSignatureInfo />
+    </div>
+  );
+}
+
+function HooksSignatureInfo() {
+  const { t, DivHtml } = useClientTranslation(
+    "profile.developper.HooksSignatureInfo"
+  );
+  return (
+    <div className={"block"}>
+      <h2>{t("title")}</h2>
+      <DivHtml
+        i18nKey={"intro"}
+        publicKey={Meteor.settings.public.hooks_public_key}
+      />
     </div>
   );
 }

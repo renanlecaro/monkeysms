@@ -1,11 +1,18 @@
-import {Meteor} from "meteor/meteor";
-import {ApiKeys, Contacts, Devices, Messages, wipeCollections,} from "/imports/collections";
+import { Meteor } from "meteor/meteor";
+import {
+  ApiKeys,
+  Contacts,
+  Devices,
+  Messages,
+  wipeCollections,
+} from "/imports/collections";
 
-import {fetch} from "meteor/fetch";
-import {escapeRegExp} from "/imports/lib/escapeRegExp";
+import { fetch } from "meteor/fetch";
+import { escapeRegExp } from "/imports/lib/escapeRegExp";
 import crypto from "crypto";
 import libphonenumber from "google-libphonenumber";
-import {notifyAPIKey} from "/server/notifyAPIKey";
+import { notifyAPIKey } from "/server/notifyAPIKey";
+import { disableKeys } from "./notifyAPIKey";
 
 export const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
 export const PNF = libphonenumber.PhoneNumberFormat;
@@ -45,10 +52,10 @@ export function deviceToWriteTo(user, to) {
   const defaultCountryCode = getUserDefaultCountryCode(user);
 
   let toNumber;
-  try{
-       toNumber = phoneUtil.parse(to, defaultCountryCode);
-  }catch (e){
-      throw new Meteor.Error("invalid-number", e.message);
+  try {
+    toNumber = phoneUtil.parse(to, defaultCountryCode);
+  } catch (e) {
+    throw new Meteor.Error("invalid-number", e.message);
   }
 
   if (!phoneUtil.isValidNumber(toNumber)) {
@@ -225,57 +232,7 @@ Meteor.methods({
       }
     ).fetch();
   },
-  async "ApiKeys.grantAccess"({ domain, webhook_callback_url }) {
-    const key = await randomToken();
-
-    const doc = {
-      key,
-      google_user_id: Meteor.user()?.services.google.id || "NONO",
-      domain,
-      createdAt: Date.now(),
-      uses: 0,
-      lastUsed: null,
-      active: true,
-      webhook_callback_url,
-    };
-    const _id = ApiKeys.insert(doc);
-    if (webhook_callback_url) {
-      try {
-        return notifyServerOfKey(doc);
-      } catch (e) {
-        ApiKeys.remove({ _id });
-        throw e;
-      }
-    }
-    return { key };
-  },
-  async "ApiKeys.reGrantAccessIfAlreadyThere"({ webhook_callback_url }) {
-    const existing = ApiKeys.findOne({
-      active: true,
-      google_user_id: Meteor.user()?.services.google.id || "NONO",
-      webhook_callback_url,
-    });
-    return existing ? notifyServerOfKey(existing) : {};
-  },
-  async "ApiKeys.disable"(_id) {
-      await disableKeys(Meteor.user()?.services.google.id, {_id} )
-      return 'ok'
-  },
 });
-
-async function disableKeys(google_user_id, filter={}){
-    if(!google_user_id) return
-    const keys = ApiKeys.find({...filter, google_user_id, active:true}).fetch();
-    await Promise.all(keys.filter(key=>key.webhook_callback_url).map(key=>notifyAPIKey(key, "key_disabled", {key}).catch(err=>console.warn("Error deleting key",err))));
-    ApiKeys.update({_id:{$in:keys.map(key=>key._id)}}, {$set:{active:false}}, {multi:true});
-}
-
-async function notifyServerOfKey(keydoc) {
-  return await notifyAPIKey(keydoc, "access_granted", {
-    api_key: keydoc.key,
-  });
-
-}
 
 async function notifyDeviceOfNewMessage(device) {
   await fetch("https://fcm.googleapis.com/fcm/send", {

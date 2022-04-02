@@ -52,6 +52,9 @@
 		},
 		"api_keys": {
 			"count": "Vous avez connecté {{count}} apps sur votre compte.",
+			"ping": "Ping",
+			"ping_error": "Le ping a échoué, l'appli n'est pas joignable",
+			"ping_success": "Le ping à marché, l'appli est joignable",
 			"remove": "Retirer",
 			"title": "Applications connectées"
 		},
@@ -101,6 +104,10 @@
 					"label": "Nom de domaine ou vous avez ajouté l'entrée TXT au DNS",
 					"placeholder": "exemple.fr"
 				}
+			},
+			"HooksSignatureInfo": {
+				"intro": "<p>Lorsque vous envoyez des utilisateurs à notre façon de s'authentifier, l'URL du crochet Web est simplement transmise en tant que paramètre de chaîne de requête et est visible par l'utilisateur. Vous devez vous assurer que cette URL n'est pas facile à deviner pour n'importe quel utilisateur.\n</p>\n<p>Pour s'assurer que les événements ne peuvent pas être facilement falsifiés, chaque appel de crochet Web est signé à l'aide de notre clé publique. Voir l'exemple de code pour un moyen efficace de le vérifier.\n</p>\n<p>La clé publique utilisée sur ce serveur est la suivante : </p>\n<code>{{publicKey}}</code>",
+				"title": "Signature des requêtes de web hook"
 			},
 			"SidebarDevLink": {
 				"link": "Mode développeur ",

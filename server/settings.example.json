@@ -16,7 +16,9 @@
     }
   },
   "public": {
-    "push_public_key": ""
+    "push_public_key": "BdP_eF2Dk....",
+    "hooks_public_key": "-----BEGIN PUBLIC KEY-----\nMIddIB...."
   },
-  "push_private_key": ""
+  "push_private_key": "QrxD....",
+  "hooks_private_key": "-----BEGIN PRIVATE KEY-----\nMSII...."
 }

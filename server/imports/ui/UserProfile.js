@@ -9,6 +9,8 @@ import { useClientTranslation } from "./i18n";
 import { NotificationSettingsSection } from "./notifications";
 import { countryCodes } from "../lib/countries";
 import { DevModeLink } from "./DeveloperConfigurationScreen";
+import { showToast } from "./toast";
+import { Table } from "../lib/Table";
 
 const ContactsCount = new Mongo.Collection("contactsCount");
 
@@ -137,23 +139,59 @@ export function UserProfile({ user, devices, setQS }) {
         <h2>{t("api_keys.title")}</h2>
         <p>{t("api_keys.count", { count: userKeys.length })} </p>
         <DevModeLink setQS={setQS} />
-        <ul>
-          {userKeys.map((key) => (
-            <li key={key._id}>
-              {key.domain}, used {key.uses} times, last used{" "}
-              {new Date(key.lastUsed).toLocaleString()}
-              <a
-                href={"#"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  callMethod("ApiKeys.disable", key._id);
-                }}
-              >
-                {t("api_keys.remove")}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <Table
+          columns={[
+            {
+              label: "domain",
+              value: (key) => key.domain,
+            },
+            {
+              label: "uses",
+              value: (key) => key.uses,
+              render: (v) => v + " times",
+            },
+            {
+              label: "last used",
+              value: (key) => key.lastUsed,
+              render: (lastUsed) =>
+                lastUsed ? new Date(lastUsed).toLocaleString() : "never",
+            },
+            {
+              label: "Remove",
+              value: (key) => key._id,
+              render: (_id) => (
+                <a
+                  href={"#"}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    callMethod("ApiKeys.disable", _id);
+                  }}
+                >
+                  {t("api_keys.remove")}
+                </a>
+              ),
+            },
+            {
+              label: "Check",
+              value: (key) => key._id,
+              render: (_id) => (
+                <a
+                  href={"#"}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    callMethod("ApiKeys.ping", _id).then(
+                      () => showToast(t("api_keys.ping_success")),
+                      () => showToast(t("api_keys.ping_error", "error"))
+                    );
+                  }}
+                >
+                  {t("api_keys.ping")}
+                </a>
+              ),
+            },
+          ]}
+          rows={userKeys}
+        />
       </div>
 
       <NotificationSettingsSection user={user} />

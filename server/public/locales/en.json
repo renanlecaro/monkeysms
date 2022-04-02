@@ -52,6 +52,9 @@
 		},
 		"api_keys": {
 			"count": "You have connected {{count}} apps to your account.",
+			"ping": "Ping",
+			"ping_error": "Ping error, app not reachable",
+			"ping_success": "Ping worked, app reachable",
 			"remove": "Remove",
 			"title": "Connected Applications"
 		},
@@ -101,6 +104,10 @@
 					"label": "Domain name where you added the TXT entry to the DNS",
 					"placeholder": "example.com"
 				}
+			},
+			"HooksSignatureInfo": {
+				"intro": "<p>\nWhen you send users our way to authenticate, the web hook URL is just passed as a query string parameter, and is user visible. You should make sure that this URL is not easy to guess for any user. \n</p>\n<p>\nTo make sure that events cannot be easily faked, each web hook call is signed using our public key. See the code sample for an efficient way to check it.\n</p>\n<p>The public key used on this server is as follow : </p>\n<code>{{publicKey}}</code>",
+				"title": "Web hooks payload signing"
 			},
 			"SidebarDevLink": {
 				"link": "Developer dashboard",
