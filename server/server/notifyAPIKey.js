@@ -2,6 +2,7 @@ import crypto from "crypto";
 import { fetch } from "meteor/fetch";
 import { Meteor } from "meteor/meteor";
 import { WebHookCalls, ApiKeys } from "/imports/collections";
+import { randomToken } from "./methods";
 
 export async function notifyAPIKey(
   { webhook_callback_url, google_user_id, domain, _id },
@@ -67,7 +68,7 @@ async function runWebHookCall({
       event,
       ...data,
       // this is so that the event corresponding to one user isn't used for another one
-      webhook_callback_url,
+      webhook_url: webhook_callback_url,
     });
     const signature = { "X-Signature": signPayload(body) };
 
