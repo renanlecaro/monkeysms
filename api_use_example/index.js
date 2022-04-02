@@ -23,6 +23,8 @@ const bodyParser = require("body-parser");
 const crypto = require("crypto");
 
 function setupApp(rootUrl) {
+  const webhook_url = rootUrl + "/monkey_sms_callback";
+  const redirect_url = rootUrl + "/send_message";
   const app = express();
 
   // This demo just stores one key in RAM instead of storing one key per user in a DB
@@ -39,8 +41,6 @@ function setupApp(rootUrl) {
     // If we don't have a key, we give the user a link to monkeysms.com.
     // This like will tell monkeysms.com that we want a key, and where
     // to send it (webhook_callback_url).
-    const webhook_url = rootUrl + "/monkey_sms_callback";
-    const redirect_url = rootUrl + "/send_message";
     const authorisationURL =
       api_url +
       "?webhook_callback_url=" +
@@ -69,6 +69,13 @@ function setupApp(rootUrl) {
   // This is the endpoint that gets the webhook call from monkeysms.com
   app.post("/monkey_sms_callback", (req, res) => {
     console.log(req.body);
+
+    // Check that the payload was sent at the right adress
+    if (req.body.webhook_url !== webhook_url) {
+      return res
+        .status(401)
+        .end("Webhook url is not the same as the one we expected");
+    }
 
     // We check the signature of the request, to make sure nobody sent a fake web hook message
     const signature = Buffer.from(req.headers["x-signature"], "hex");
