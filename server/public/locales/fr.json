@@ -79,7 +79,7 @@
 				"title": "Mode développeur "
 			},
 			"DomainsVerification": {
-				"intro": "<p>Pour prouver que vous possédez un domaine ou sous-domaine, ajoutez l'enregistrement TXT suivant à votre DNS : <code>{{txtTagRequired}}</code>. </p>\n\n<p>Vous pouvez ensuite taper votre domaine ici et nous vérifierons que l'enregistrement est là. Une fois qu'un domaine est validé, vous pourrez voir toutes les informations de débogage sur son utilisation de l'API.</p>",
+				"intro": "<p>Pour prouver que vous possédez un domaine ou sous-domaine, ajoutez l'enregistrement TXT suivant à votre DNS :</p>\n <code>{{txtTagRequired}}</code>\n<p>Vous pouvez ensuite taper votre domaine ici et nous vérifierons que l'enregistrement est là. Une fois qu'un domaine est validé, vous pourrez voir toutes les informations de débogage sur son utilisation de l'API.</p>",
 				"recheck": {
 					"action": "Revérifier",
 					"failed": "On non ! Le TXT n'a pas été trouvé. Après le premier essais, il arrive que le record DNS soit mis en cache, donc réessayez demain",

@@ -79,7 +79,7 @@
 				"title": "Developer dashboard"
 			},
 			"DomainsVerification": {
-				"intro": "<p>To prove that you own a domain or subdomain, add the following TXT record to your DNS : <code>{{txtTagRequired}}</code>. </p>\n\n<p>You can then type your domain here and we'll check that the record is there. Once a domain is validated, you'll be able to see all debug information about its API usage. </p>",
+				"intro": "<p>To prove that you own a domain or subdomain, add the following TXT record to your DNS :   </p>\n <code>{{txtTagRequired}}</code>\n<p>You can then type your domain here and we'll check that the record is there. Once a domain is validated, you'll be able to see all debug information about its API usage. </p>",
 				"recheck": {
 					"action": "Recheck",
 					"failed": "Oh no ! The record could not be found. You can hover the records column in the table to see what's been found",
