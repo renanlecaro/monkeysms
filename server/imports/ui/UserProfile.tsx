@@ -36,13 +36,16 @@ export function UserProfile({ user, devices, setQS }) {
       setDefaultCountry(v)
     );
   }
+
   useEffect(() => {
     reloadCountry();
   }, []);
+
   function changeDefaultCountry(code) {
     setDefaultCountry(code);
     callMethod("setUserDefaultCountryCode", code);
   }
+
   return (
     <div className={"UserProfile"}>
       <div className={"block"}>

@@ -1,140 +1,140 @@
 {
-	"WriteForm": {
-		"input_placeholder": "Write your SMS here, it will be sent to  {{toFormatted}} from {{from}}",
-		"send": "Send"
-	},
-	"apk": {
-		"back_home": "Go back to the home page",
-		"button_label": "Download the APK",
-		"intro": "<p> Google is <a href=\"https://support.google.com/googleplay/android-developer/answer/10208820?hl=en#zippy=%2Cpermitted-uses-of-the-sms-and-call-log-permissions%2Cexceptions\">quite strict</a> about what an SMS app can do, so the app is not on the play store.</p>\n<p>For now, you will need to install it straight from the APK file. You need to download the file, then install it. You will need to allow your web browser to install apps from \"unknown sources\".</p> \n<p>Please be aware of the following limitations of the app :</p>\n\n      <ul> \n        <li>\n          <strong> 10 MB of storage space</strong> required\n        </li>\n        <li>\n          <strong>Google Play Services</strong> are required, as you'll need to\n          log in with Google\n        </li>\n        <li>\n          <strong>Android 5.1 </strong> (API level 22) is the oldest android\n          version we support.\n        </li>\n      </ul> ",
-		"title": "Install Monkey SMS on your phone"
-	},
-	"homepage": {
-		"footer": {
-			"about": "About",
-			"api": "API",
-			"privacy": "Privacy Policy",
-			"tos": "TOS"
-		},
-		"slide_0": {
-			"login": "Sign in with Google",
-			"open": "Open app",
-			"p0": "Install our android <a href=\"/apk\">app</a> on one or more <strong>android phones</strong>. Log in to the same google account in the app and on this page. ",
-			"p1": " Read and send SMS messages from this website; Your phone can be anywhere as long as it has network access and internet.",
-			"title": "SMS from anywhere"
-		},
-		"slide_1": {
-			"action": "API doc",
-			"p0": "The reason this app exists is to make the sms programmable. There are already many solutions on the market to send SMS from your computer.",
-			"p1": "However, none of them let you easily send SMS in a simple, programmable and fully automated way.",
-			"title": "Programmable"
-		},
-		"slide_2": {
-			"action": "See source",
-			"p0": "It's very difficult to get this kind of power-user app accepted on the official play store. After a few refusals of my app, I've decided to stop wasting hours on their review process. Instead, I'm distributing the apk directly, and  I've made the code fully public to give you a chance to review its behavior. ",
-			"p1": "You can read the code, and if you are technically competent, you can even compile it yourself. The app is <strong>free to use </strong>for now , but please note that \"open source\" doesn't mean \"free support\" or \"free hosting\". I reserve the right to introduce a paid tier in the future.",
-			"title": "Open source"
-		}
-	},
-	"install_prompt": {
-		"install_app": "Install the app",
-		"on_your_phone": " on your phone ",
-		"open_this": "Open this link ",
-		"or": " or ",
-		"skip": "skip",
-		"title": "You are logged in !"
-	},
-	"profile": {
-		"account": {
-			"delete": "Delete account",
-			"log_out": "Log out from this computer",
-			"title": "Your account"
-		},
-		"api_keys": {
-			"count": "You have connected {{count}} apps to your account.",
-			"ping": "Ping",
-			"ping_error": "Ping error, app not reachable",
-			"ping_success": "Ping worked, app reachable",
-			"remove": "Remove",
-			"title": "Connected Applications"
-		},
-		"contacts": {
-			"dupes_listed_twice": "Contacts with multiple numbers are created multiple times.",
-			"imported": "You have imported {{count}} name/number combination.",
-			"number_needed": "Contacts without a phone number are ignored.",
-			"title": "Contacts"
-		},
-		"defaultCountry": {
-			"instructions": "Treat phone numbers without country prefix as numbers from : ",
-			"title": "Default country code "
-		},
-		"developper": {
-			"DevModeLink": {
-				"action": "enable developer mode",
-				"done": "You have enabled developer mode, see the link in the sidebar",
-				"label": "If you want to connect your own web apps MonkeySMS and send SMS messages from your user's phones you can start by "
-			},
-			"DevelopperConfigurationScreen": {
-				"intro": "This screen will help you configure the connection between your web app and our system, enabling you to send SMS messages from you user's phones.",
-				"title": "Developer dashboard"
-			},
-			"DomainsVerification": {
-				"intro": "<p>To prove that you own a domain or subdomain, add the following TXT record to your DNS :   </p>\n <code>{{txtTagRequired}}</code>\n<p>You can then type your domain here and we'll check that the record is there. Once a domain is validated, you'll be able to see all debug information about its API usage. </p>",
-				"recheck": {
-					"action": "Recheck",
-					"failed": "Oh no ! The record could not be found. You can hover the records column in the table to see what's been found",
-					"worked": "Success ! The TXT record was found"
-				},
-				"remove": {
-					"action": "Remove"
-				},
-				"results": {
-					"hasRecords": "{{count}} TXT records found",
-					"label": "Results",
-					"noRecord": "No TXT records found"
-				},
-				"status": {
-					"error": "Domain unreachable",
-					"pending": "Pending",
-					"verified": "Verified"
-				},
-				"title": "Verified domains",
-				"toVerify": {
-					"action": "Verify",
-					"label": "Domain name where you added the TXT entry to the DNS",
-					"placeholder": "example.com"
-				}
-			},
-			"HooksSignatureInfo": {
-				"intro": "<p>\nWhen you send users our way to authenticate, the web hook URL is just passed as a query string parameter, and is user visible. You should make sure that this URL is not easy to guess for any user. \n</p>\n<p>\nTo make sure that events cannot be easily faked, each web hook call is signed using our public key. See the code sample for an efficient way to check it.\n</p>\n<p>The public key used on this server is as follow : </p>\n<code>{{publicKey}}</code>",
-				"title": "Web hooks payload signing"
-			},
-			"SidebarDevLink": {
-				"link": "Developer dashboard",
-				"subtitle": "Configure your apps"
-			},
-			"how_to": "See how to use the <a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMSin your own web app. "
-		},
-		"devices": {
-			"disconnect": "Disconnect",
-			"intro": " Your connected android devices with the app installed :",
-			"last_seen": "last seen",
-			"no_device": "You haven't connected any device yet, so this dashboard is a bit empty. See on <a href=\"/apk\">this page</a> how to install the app.",
-			"no_number": "No SIM card",
-			"title": "Devices"
-		},
-		"notifications": {
-			"blocked": "Push Messaging Blocked",
-			"delete_device": "Remove",
-			"enable": "Enable Push Messaging",
-			"error": "error : {{error}}",
-			"intro": "You can receive the new messages notifications on multiple devices",
-			"loading": "Loading...",
-			"test_device": "Test",
-			"title": "Notifications"
-		}
-	},
-	"sidebar": {
-		"search": "Find a contact"
-	}
+  "WriteForm": {
+    "input_placeholder": "Write your SMS here, it will be sent to  {{toFormatted}} from {{from}}",
+    "send": "Send"
+  },
+  "apk": {
+    "back_home": "Go back to the home page",
+    "button_label": "Download the APK",
+    "intro": "<p> Google is <a href=\"https://support.google.com/googleplay/android-developer/answer/10208820?hl=en#zippy=%2Cpermitted-uses-of-the-sms-and-call-log-permissions%2Cexceptions\">quite strict</a> about what an SMS app can do, so the app is not on the play store.</p>\n<p>For now, you will need to install it straight from the APK file. You need to download the file, then install it. You will need to allow your web browser to install apps from \"unknown sources\".</p> \n<p>Please be aware of the following limitations of the app :</p>\n\n      <ul> \n        <li>\n          <strong> 10 MB of storage space</strong> required\n        </li>\n        <li>\n          <strong>Google Play Services</strong> are required, as you'll need to\n          log in with Google\n        </li>\n        <li>\n          <strong>Android 5.1 </strong> (API level 22) is the oldest android\n          version we support.\n        </li>\n      </ul> ",
+    "title": "Install Monkey SMS on your phone"
+  },
+  "homepage": {
+    "footer": {
+      "about": "About",
+      "api": "API",
+      "privacy": "Privacy Policy",
+      "tos": "TOS"
+    },
+    "slide_0": {
+      "login": "Sign in with Google",
+      "open": "Open app",
+      "p0": "Install our android <a href=\"/apk\">app</a> on one or more <strong>android phones</strong>. Log in to the same google account in the app and on this page. ",
+      "p1": " Read and send SMS messages from this website; Your phone can be anywhere as long as it has network access and internet.",
+      "title": "SMS from anywhere"
+    },
+    "slide_1": {
+      "action": "API doc",
+      "p0": "The reason this app exists is to make the sms programmable. There are already many solutions on the market to send SMS from your computer.",
+      "p1": "However, none of them let you easily send SMS in a simple, programmable and fully automated way.",
+      "title": "Programmable"
+    },
+    "slide_2": {
+      "action": "See source",
+      "p0": "It's very difficult to get this kind of power-user app accepted on the official play store. After a few refusals of my app, I've decided to stop wasting hours on their review process. Instead, I'm distributing the apk directly, and  I've made the code fully public to give you a chance to review its behavior. ",
+      "p1": "You can read the code, and if you are technically competent, you can even compile it yourself. The app is <strong>free to use </strong>for now , but please note that \"open source\" doesn't mean \"free support\" or \"free hosting\". I reserve the right to introduce a paid tier in the future.",
+      "title": "Open source"
+    }
+  },
+  "install_prompt": {
+    "install_app": "Install the app",
+    "on_your_phone": " on your phone ",
+    "open_this": "Open this link ",
+    "or": " or ",
+    "skip": "skip",
+    "title": "You are logged in !"
+  },
+  "profile": {
+    "account": {
+      "delete": "Delete account",
+      "log_out": "Log out from this computer",
+      "title": "Your account"
+    },
+    "api_keys": {
+      "count": "You have connected {{count}} apps to your account.",
+      "ping": "Ping",
+      "ping_error": "Ping error, app not reachable",
+      "ping_success": "Ping worked, app reachable",
+      "remove": "Remove",
+      "title": "Connected Applications"
+    },
+    "contacts": {
+      "dupes_listed_twice": "Contacts with multiple numbers are created multiple times.",
+      "imported": "You have imported {{count}} name/number combination.",
+      "number_needed": "Contacts without a phone number are ignored.",
+      "title": "Contacts"
+    },
+    "defaultCountry": {
+      "instructions": "Treat phone numbers without country prefix as numbers from : ",
+      "title": "Default country code "
+    },
+    "developper": {
+      "DevModeLink": {
+        "action": "enable developer mode",
+        "done": "You have enabled developer mode, see the link in the sidebar",
+        "label": "If you want to connect your own web apps MonkeySMS and send SMS messages from your user's phones you can start by "
+      },
+      "DevelopperConfigurationScreen": {
+        "intro": "This screen will help you configure the connection between your web app and our system, enabling you to send SMS messages from you user's phones.",
+        "title": "Developer dashboard"
+      },
+      "DomainsVerification": {
+        "intro": "<p>To prove that you own a domain or subdomain, add the following TXT record to your DNS :   </p>\n <code>{{txtTagRequired}}</code>\n<p>You can then type your domain here and we'll check that the record is there. Once a domain is validated, you'll be able to see all debug information about its API usage. </p>",
+        "recheck": {
+          "action": "Recheck",
+          "failed": "Oh no ! The record could not be found. You can hover the records column in the table to see what's been found",
+          "worked": "Success ! The TXT record was found"
+        },
+        "remove": {
+          "action": "Remove"
+        },
+        "results": {
+          "hasRecords": "{{count}} TXT records found",
+          "label": "Results",
+          "noRecord": "No TXT records found"
+        },
+        "status": {
+          "error": "Domain unreachable",
+          "pending": "Pending",
+          "verified": "Verified"
+        },
+        "title": "Verified domains",
+        "toVerify": {
+          "action": "Verify",
+          "label": "Domain name where you added the TXT entry to the DNS",
+          "placeholder": "example.com"
+        }
+      },
+      "HooksSignatureInfo": {
+        "intro": "<p>\nWhen you send users our way to authenticate, the web hook URL is just passed as a query string parameter, and is user visible. You should make sure that this URL is not easy to guess for any user. \n</p>\n<p>\nTo make sure that events cannot be easily faked, each web hook call is signed using our public key. See the code sample for an efficient way to check it.\n</p>\n<p>The public key used on this server is as follow : </p>\n<code>{{publicKey}}</code>",
+        "title": "Web hooks payload signing"
+      },
+      "SidebarDevLink": {
+        "link": "Developer dashboard",
+        "subtitle": "Configure your apps"
+      },
+      "how_to": "See how to use the <a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMSin your own web app. "
+    },
+    "devices": {
+      "disconnect": "Disconnect",
+      "intro": " Your connected android devices with the app installed :",
+      "last_seen": "last seen",
+      "no_device": "You haven't connected any device yet, so this dashboard is a bit empty. See on <a href=\"/apk\">this page</a> how to install the app.",
+      "no_number": "No SIM card",
+      "title": "Devices"
+    },
+    "notifications": {
+      "blocked": "Push Messaging Blocked",
+      "delete_device": "Remove",
+      "enable": "Enable Push Messaging",
+      "error": "error : {{error}}",
+      "intro": "You can receive the new messages notifications on multiple devices",
+      "loading": "Loading...",
+      "test_device": "Test",
+      "title": "Notifications"
+    }
+  },
+  "sidebar": {
+    "search": "Find a contact"
+  }
 }

@@ -1,6 +1,7 @@
 import { showToast } from "../ui/toast";
 
 import { Meteor } from "meteor/meteor";
+
 export function callMethod<T>(name: string, ...args): Promise<T> {
   console.log(
     "callMethod(" + JSON.stringify([name, ...args]).slice(1, -1) + ")"

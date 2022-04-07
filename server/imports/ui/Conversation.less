@@ -1,4 +1,5 @@
 @import "App";
+
 .Conversation {
   min-height: 100vh;
 
@@ -11,6 +12,7 @@
     background: var(--main-bg);
     color: var(--main-fg);
   }
+
   .messageList {
     padding: 20px;
     padding-bottom: 80px;
@@ -18,8 +20,10 @@
     flex-direction: column;
     justify-content: flex-end;
     min-height: calc(100vh - 60px);
+
     .message {
       margin-bottom: 0px;
+
       > .message-meta-info {
         color: var(--main-fg);
         opacity: 0.2;
@@ -27,6 +31,7 @@
         font-size: 70%;
         line-height: 40px;
       }
+
       > .message-text {
         white-space: pre-wrap;
 
@@ -42,6 +47,7 @@
     .message.outbound {
       align-self: flex-end;
       margin-left: 40px;
+
       > .message-text {
         //background: var(--accent-bg);
         //color: var(--accent-fg);
@@ -53,6 +59,7 @@
       align-self: flex-start;
 
       margin-rigth: 40px;
+
       > .message-text {
         border-radius: 10px 10px 10px 0;
       }
@@ -68,6 +75,7 @@
 
     background: var(--main-bg);
     color: var(--main-fg);
+
     textarea {
       position: absolute;
       background: none;
@@ -87,6 +95,7 @@
       border-top: 1px solid rgba(0, 0, 0, 0.2);
 
       .noScrollBar;
+
       &:focus {
         border-top: 1px solid rgba(0, 0, 0, 0.5);
         outline: none;

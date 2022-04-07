@@ -45,11 +45,13 @@ function SideBar({ user, qs, setQS }) {
   const search = qs("search");
   const setSearch = (v) => setQS({ search: v }, true);
   const searchRegexp = new RegExp(`(${escapeRegExp(search)})`, "gi");
+
   function matchesSearch(text) {
     if (!search) return true;
     if (!text) return false;
     return text.match(searchRegexp);
   }
+
   useTracker(() => Meteor.subscribe("conversations", search));
 
   const conversations = useTracker(() =>
@@ -121,6 +123,7 @@ function SideBar({ user, qs, setQS }) {
     </nav>
   );
 }
+
 function SearchIcon(props) {
   return (
     <svg
@@ -160,6 +163,7 @@ function CloseIcon(props) {
     </svg>
   );
 }
+
 function HilightText({ text, search }) {
   if (!search || !text) return <span>{text || ""}</span>;
   // Split on search term and include term into parts, ignore case

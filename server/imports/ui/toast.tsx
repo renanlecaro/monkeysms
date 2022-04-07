@@ -11,6 +11,7 @@ export function showToast(text, className = "success") {
   toast.className = className;
   const timeout = setTimeout(clear, 6000);
   toast.addEventListener("click", clear);
+
   function clear() {
     toastContainer.removeChild(toast);
     clearTimeout(timeout);

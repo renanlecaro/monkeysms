@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor";
+
 import { OAuth2Client } from "google-auth-library";
-import { ApiKeys, Contacts, Devices, Messages } from "../imports/collections";
+import { ApiKeys, Contacts, Devices, Messages } from "/imports/collections";
 import bodyParser from "body-parser";
 import {
   createMessage,
@@ -14,18 +15,18 @@ import { notifyUser } from "./WebNotifications";
 import { notifyAPIKey } from "/server/notifyAPIKey";
 
 export function setupAPI(app) {
-  app.use("/api", function (req, res, next) {
-    console.log(req.headers["x-app-version"]);
-    next();
-  });
+  // app.use("/api", function (req, _res, next) {
+  //   console.log(req.headers["x-app-version"]);
+  //   next();
+  // });
 
   app.use("/api/", bodyParser.json());
 
   app.use("/api/v1/", async (req, res, next) => {
     const couldContainKey = { ...req.query, ...req.headers };
 
-    const keyHeaderName = Object.keys(couldContainKey).filter((k) =>
-      k.match(/key/gi)
+    const keyHeaderName = Object.keys(couldContainKey).find(
+      (k) => k.toLocaleLowerCase().trim() == "x-api-key"
     );
     if (!keyHeaderName) {
       return res
@@ -50,7 +51,7 @@ export function setupAPI(app) {
   });
 
   app.get("/api/v1/messages/:id", async (req, res) => {
-    const { rights, source } = req;
+    const { source } = req;
     const message = Messages.findOne({ source, _id: req.params.id });
     if (!message) {
       return res
@@ -260,28 +261,31 @@ export function setupAPI(app) {
               createdAt,
               seen,
             } = msg;
-            const { nModified } = (
-              await Messages.rawCollection().update(
-                { deviceId, _id, google_user_id },
-                {
-                  $set: {
-                    from,
-                    to,
-                    outbound,
-                    text,
-                    status,
-                    deviceId,
-                    last_updated: now,
-                    createdAt,
-                    seen,
-                  },
-                  $setOnInsert: {
-                    source: { type: "device", id: device._id },
-                  },
-                },
-                { upsert: true }
-              )
-            ).result;
+
+            const editFilter = { deviceId, _id, google_user_id };
+            const edit$set = {
+              from,
+              to,
+              outbound,
+              text,
+              status,
+              deviceId,
+              last_updated: now,
+              createdAt,
+              seen,
+            };
+            const nModified = Messages.update(editFilter, {
+              $set: edit$set,
+            });
+
+            if (!nModified) {
+              Messages.insert({
+                ...editFilter,
+                ...edit$set,
+                source: { type: "device", id: device._id },
+              });
+            }
+
             console.log({
               nModified,
             });

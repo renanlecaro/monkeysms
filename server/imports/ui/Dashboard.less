@@ -1,4 +1,5 @@
 @import "App";
+
 .sideNav {
   position: fixed;
   left: 0;
@@ -9,11 +10,13 @@
   color: var(--dim-fg);
   overflow-y: auto;
   .noScrollBar;
+
   .searchBar {
     position: relative;
     display: block;
 
     border-right: 1px solid var(--dim-shadow);
+
     input {
       border: none;
       width: 100%;
@@ -21,11 +24,13 @@
       background: inherit;
       color: inherit;
       font: inherit;
+
       &::placeholder {
         color: inherit;
         opacity: 1;
       }
     }
+
     svg {
       position: absolute;
       top: 10px;
@@ -33,24 +38,29 @@
       height: auto;
       max-height: 20px;
       color: var(--dim-fg);
+
       &.SearchIcon {
         pointer-events: none;
         left: 20px;
       }
+
       &.CloseIcon {
         cursor: pointer;
         right: 20px;
       }
     }
+
     input:focus,
     input.filtering {
       background: var(--accent-bg);
       color: var(--accent-fg);
       outline: none;
+
       & ~ svg {
         color: var(--accent-fg);
       }
     }
+
     input:not(:focus):not(:hover):not(.filtering) {
       &,
       & ~ .SearchIcon {
@@ -78,6 +88,7 @@
       border-top: 1px solid var(--dim-shadow);
       border-bottom: 1px solid var(--dim-shadow);
     }
+
     &:not(.active) {
       color: inherit;
       background: transparent;
@@ -92,11 +103,13 @@
     }
   }
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
   }
 }
+
 @keyframes colorFadeIn {
   0% {
     color: inherit;

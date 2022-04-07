@@ -95,6 +95,7 @@ export interface Device {
   // region codes corresponding to the userNumbers
   regionCodes: PhoneNumberRegionCode[];
 }
+
 export interface Source {
   // Type of source that created the object
   type: // created by the web app
@@ -155,6 +156,7 @@ export interface WebHookCall {
   failures: number;
   status: "pending" | "running" | "done" | "failed";
 }
+
 export const WebHookCalls = new Mongo.Collection<WebHookCall>("WebHookCalls");
 
 type DomainVerificationId = string;
@@ -170,6 +172,7 @@ export interface DomainVerification {
   createdAt: TimeStamp;
   failures: number;
 }
+
 export const DomainVerifications = new Mongo.Collection<DomainVerification>(
   "DomainVerifications"
 );
