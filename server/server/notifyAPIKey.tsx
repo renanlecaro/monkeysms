@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { fetch } from "meteor/fetch";
 import { Meteor } from "meteor/meteor";
-import { WebHookCalls, ApiKeys } from "/imports/collections";
+import { ApiKeys, WebHookCalls } from "/imports/collections";
 import { randomToken } from "./methods";
 
 export async function notifyAPIKey(

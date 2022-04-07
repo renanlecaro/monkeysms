@@ -4,19 +4,18 @@ import { render } from "react-dom";
 import { App } from "/imports/ui/App";
 
 Meteor.startup(() => {
-  render(
-  <AppWrap/>,
-    document.getElementById("react-target")
-  );
+  render(<AppWrap />, document.getElementById("react-target"));
 });
 
-function AppWrap(){
-    useEffect(() => {
-      document.getElementById("spinner").style.display = "none";
-    }, []);
-    return  <Suspense fallback={<Spinner />}>
+function AppWrap() {
+  useEffect(() => {
+    document.getElementById("spinner").style.display = "none";
+  }, []);
+  return (
+    <Suspense fallback={<Spinner />}>
       <App />
     </Suspense>
+  );
 }
 
 function Spinner() {

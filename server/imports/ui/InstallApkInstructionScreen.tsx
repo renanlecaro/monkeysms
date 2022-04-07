@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import "./InstallApkInstructionScreen.less";
 import { useClientTranslation } from "./i18n";
+
 export function InstallApkInstructionScreen() {
   const { t, DivHtml } = useClientTranslation("apk");
 

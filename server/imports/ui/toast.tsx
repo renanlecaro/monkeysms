@@ -1,4 +1,5 @@
 import "./toast.less";
+
 const toastContainer = document.createElement("DIV");
 document.body.appendChild(toastContainer);
 toastContainer.id = "toastContainer";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./UserProfile.less";
 import { useTracker } from "meteor/react-meteor-data";
 import { ApiKeys } from "../collections";

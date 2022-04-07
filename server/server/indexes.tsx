@@ -1,4 +1,4 @@
-import { Contacts, Devices, Messages } from "../imports/collections";
+import { Contacts, Devices, Messages } from "/imports/collections";
 
 Devices.rawCollection().createIndex({ google_user_id: 1, last_updated: -1 });
 Devices.rawCollection().createIndex({ androidId: 1 });

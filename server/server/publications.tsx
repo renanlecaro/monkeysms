@@ -1,11 +1,5 @@
 import { Meteor } from "meteor/meteor";
-import {
-  ApiAccesses,
-  ApiKeys,
-  Contacts,
-  Devices,
-  Messages,
-} from "../imports/collections";
+import { ApiKeys, Contacts, Devices, Messages } from "../imports/collections";
 import { ReactiveAggregate } from "meteor/jcbernack:reactive-aggregate";
 
 Meteor.publish(null, function () {

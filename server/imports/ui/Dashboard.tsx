@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Meteor } from "meteor/meteor";
 import { UserProfile } from "./UserProfile";
-import { Conversation } from "./Conversation";
+import { ConversationUI } from "./Conversation";
 import "./Dashboard.less";
 import { useTracker } from "meteor/react-meteor-data";
 import { cleanPhoneNumber, escapeRegExp } from "../lib/escapeRegExp";
@@ -11,9 +11,11 @@ import {
   DeveloperConfigurationScreen,
   SidebarDevLink,
 } from "./DeveloperConfigurationScreen";
+import { Mongo } from "meteor/mongo";
+import { Conversation } from "/imports/collections";
 
 export function Dashboard(props) {
-  const { qs, setQS } = props;
+  const { qs } = props;
   // wake up app
   useEffect(() => {
     callMethod("notify");
@@ -24,7 +26,7 @@ export function Dashboard(props) {
   const pageContent = {
     dev: <DeveloperConfigurationScreen {...props} />,
     "": <UserProfile {...props} />,
-  }[path] || <Conversation {...props} to={path} />;
+  }[path] || <ConversationUI {...props} to={path} />;
 
   return (
     <div className={"Dashboard"}>
@@ -34,7 +36,7 @@ export function Dashboard(props) {
   );
 }
 
-const Conversations = new Meteor.Collection("conversations");
+const Conversations = new Mongo.Collection<Conversation>("conversations");
 
 function SideBar({ user, qs, setQS }) {
   const { t } = useClientTranslation("sidebar");
@@ -76,7 +78,7 @@ function SideBar({ user, qs, setQS }) {
     return (
       <a
         key={number}
-        onClick={(e) => setPath(number)}
+        onClick={() => setPath(number)}
         className={path == number ? "active" : ""}
       >
         <strong>
@@ -93,7 +95,7 @@ function SideBar({ user, qs, setQS }) {
 
   return (
     <nav className={"sideNav"}>
-      <a onClick={(e) => setPath("")} className={path === "" ? "active" : ""}>
+      <a onClick={() => setPath("")} className={path === "" ? "active" : ""}>
         <strong>{user.services.google.name}</strong>
         <em> {user.services.google.email}</em>
       </a>
@@ -108,7 +110,7 @@ function SideBar({ user, qs, setQS }) {
         />
         <SearchIcon className={"SearchIcon"} />
         {search ? (
-          <CloseIcon className={"CloseIcon"} onClick={(e) => setSearch("")} />
+          <CloseIcon className={"CloseIcon"} onClick={() => setSearch("")} />
         ) : null}
       </div>
       {conversations.map((msg) =>

@@ -1,6 +1,5 @@
 import { Meteor } from "meteor/meteor";
 import {
-  ApiKeys,
   Contacts,
   Devices,
   Messages,
@@ -11,7 +10,6 @@ import { fetch } from "meteor/fetch";
 import { escapeRegExp } from "/imports/lib/escapeRegExp";
 import crypto from "crypto";
 import libphonenumber from "google-libphonenumber";
-import { notifyAPIKey } from "/server/notifyAPIKey";
 import { disableKeys } from "./notifyAPIKey";
 
 export const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();

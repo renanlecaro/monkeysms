@@ -1,7 +1,7 @@
 import { useTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import { Messages } from "../collections";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Conversation.less";
 import { callMethod } from "../lib/callMethod";
 import Linkify from "react-linkify";
@@ -18,9 +18,8 @@ export function WriteForm({ to }) {
     setErr(null);
     callMethod
       .noToast("getDeviceForNumber", to)
-      .then(({ device, to, from }) => {
-
-          setFrom(from);
+      .then(({ to, from }) => {
+        setFrom(from);
         setToFormatted(to);
       })
       .catch((e) => setErr(e.message));
@@ -54,7 +53,7 @@ export function WriteForm({ to }) {
   );
 }
 
-export function Conversation({ to }) {
+export function ConversationUI({ to }) {
   useTracker(() => Meteor.subscribe("lastMessages", to));
   const messages = useTracker(() =>
     Messages.find(

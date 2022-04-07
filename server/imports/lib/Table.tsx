@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import "./Table.less";
 
 function identity(value) {

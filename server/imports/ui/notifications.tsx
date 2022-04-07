@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { NotificationReceivers } from "../collections";
 import { callMethod } from "../lib/callMethod";

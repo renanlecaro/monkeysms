@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { Devices } from "../collections";
 import { Meteor } from "meteor/meteor";
@@ -43,7 +43,7 @@ function parseQS() {
   return queryObj;
 }
 
-function pushQSInState({ path = "", ...searchObj }, replace) {
+function pushQSInState({ path = "", ...searchObj }, replace = false) {
   const search =
     "?" +
     Object.keys(searchObj)
@@ -61,7 +61,10 @@ function pushQSInState({ path = "", ...searchObj }, replace) {
   );
 }
 
-export function usePath() {
+export function usePath(): [
+  (path: string) => string,
+  (change: Object) => void
+] {
   const [qs, setQS] = useState(parseQS());
 
   useEffect(() => {
@@ -74,8 +77,8 @@ export function usePath() {
   });
 
   return [
-    (key) => qs[key] || "",
-    function (changes, replace) {
+    (key): string => qs[key] || "",
+    function (changes, replace = false) {
       const newQS = { ...qs, ...changes };
 
       Object.keys(newQS).forEach((k) => {

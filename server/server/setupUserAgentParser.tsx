@@ -1,4 +1,5 @@
 import DeviceDetector from "device-detector-js";
+
 const deviceDetector = new DeviceDetector();
 export function setupUserAgentParser(app) {
   app.get("/user_agent", (req, res) => {

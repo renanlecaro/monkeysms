@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useClientTranslation } from "./i18n";
 import { useTracker } from "meteor/react-meteor-data";
 import { callMethod } from "../lib/callMethod";
-import { DomainVerifications } from "../collections";
+import { DomainVerifications, MonkeyUser } from "../collections";
 import { txtRecordForUser } from "../lib/txtRecordForUser";
 import "./DeveloperConfigurationScreen.less";
 import { Table } from "../lib/Table";
 import { showToast } from "./toast";
+import { Meteor } from "meteor/meteor";
 
 export function DevModeLink({ setQS }) {
   const { t } = useClientTranslation("profile.developper.DevModeLink");
 
-  const user = useTracker(() => Meteor.user());
+  const user = useTracker(() => Meteor.user()) as MonkeyUser;
   if (user.profile.developper) {
     return <p>{t("done")}</p>;
   }
@@ -39,7 +40,7 @@ export function SidebarDevLink({ path, setPath }) {
 
   return (
     <a
-      onClick={(e) => setPath("dev")}
+      onClick={() => setPath("dev")}
       className={path === "dev" ? "active" : ""}
     >
       <strong>{t("link")}</strong>
@@ -83,11 +84,11 @@ function HooksSignatureInfo() {
 }
 
 function DomainsVerification() {
-  const { t, ParagraphHtml, DivHtml } = useClientTranslation(
+  const { t, DivHtml } = useClientTranslation(
     "profile.developper.DomainsVerification"
   );
   const [toVerify, setToVerify] = useState("");
-  const sub = useTracker(() => Meteor.subscribe("domain.list"));
+  useTracker(() => Meteor.subscribe("domain.list"));
   const domains = useTracker(() => DomainVerifications.find().fetch());
   const txtTagRequired = useTracker(
     () => Meteor.user() && txtRecordForUser(Meteor.user().services.google.id)
