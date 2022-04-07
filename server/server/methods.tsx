@@ -15,7 +15,7 @@ import { disableKeys } from "./notifyAPIKey";
 export const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
 export const PNF = libphonenumber.PhoneNumberFormat;
 
-export function randomToken() {
+export function randomToken(): Promise<string> {
   return new Promise((resolve, reject) =>
     crypto.randomBytes(48, function (err, buffer) {
       if (err) return reject(err);
@@ -158,7 +158,11 @@ export async function notifyAllUserDevicesExcept(google_user_id, except = "") {
 
 Meteor.methods({
   getDeviceForNumber(to) {
-    return deviceToWriteTo(Meteor.user(), to);
+    try {
+      return deviceToWriteTo(Meteor.user(), to);
+    } catch (e) {
+      return { error: e.message };
+    }
   },
   getUserDefaultCountryCode() {
     return getUserDefaultCountryCode(Meteor.user());

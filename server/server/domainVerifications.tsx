@@ -1,5 +1,5 @@
 import { Meteor } from "meteor/meteor";
-import { DomainVerifications } from "/imports/collections";
+import { DomainVerification, DomainVerifications } from "/imports/collections";
 
 import dns from "dns";
 import { txtRecordForUser } from "../imports/lib/txtRecordForUser";
@@ -19,18 +19,18 @@ Meteor.methods({
         "You already have a verification for this domain"
       );
     }
-    const verification = {
+    const verification: DomainVerification = {
       domain,
       google_user_id,
       status: "pending",
-      createdAt: new Date(),
+      createdAt: Date.now(),
       failures: 0,
     };
 
     verification._id = DomainVerifications.insert(verification);
     return await verifyDomain(verification);
   },
-  async "domain.verify.recheck"(_id) {
+  async "domain.verify.recheck"(_id): Promise<DomainVerification> {
     const dv = DomainVerifications.findOne({
       _id,
       google_user_id: Meteor.user().services.google.id,
@@ -45,7 +45,7 @@ Meteor.methods({
   },
 });
 
-async function verifyDomain(verification) {
+async function verifyDomain(verification): Promise<DomainVerification> {
   let result = null;
   try {
     const records = (await resolveTXT(verification.domain)).flat();
@@ -102,7 +102,7 @@ Meteor.publish("domain.list", function () {
   });
 });
 
-export function resolveTXT(domain) {
+export function resolveTXT(domain): Promise<string[][]> {
   return new Promise((resolve, reject) => {
     dns.resolveTxt(domain, (err, records) => {
       if (err) {

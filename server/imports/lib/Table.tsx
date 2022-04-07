@@ -3,7 +3,28 @@ import "./Table.less";
 function identity(value) {
   return value;
 }
-export function Table({ columns, intro, rows, ifEmpty, className = "" }) {
+
+interface TableColumn<T> {
+  label: string;
+  value?: (row: T) => any;
+  render?: (value: any, row: T) => JSX.Element;
+}
+
+type TableProps<T> = {
+  columns: TableColumn<T>[];
+  intro?: JSX.Element;
+  rows: T[];
+  ifEmpty?: JSX.Element;
+  className?: string;
+};
+
+export function Table<T>({
+  columns,
+  intro,
+  rows,
+  ifEmpty,
+  className = "",
+}: TableProps<T>) {
   if (!rows.length) return ifEmpty || null;
   return (
     <>

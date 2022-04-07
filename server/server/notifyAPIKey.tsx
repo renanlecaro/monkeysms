@@ -1,14 +1,17 @@
 import crypto from "crypto";
 import { fetch } from "meteor/fetch";
 import { Meteor } from "meteor/meteor";
-import { ApiKeys, WebHookCalls } from "/imports/collections";
+import {
+  ApiKey,
+  ApiKeys,
+  WebHookCall,
+  WebHookCalls,
+} from "/imports/collections";
 import { randomToken } from "./methods";
+import { Buffer } from "buffer";
 
-export async function notifyAPIKey(
-  { webhook_callback_url, google_user_id, domain, _id },
-  event,
-  data
-) {
+export async function notifyAPIKey(keyToNotify: ApiKey, event, data) {
+  const { webhook_callback_url, google_user_id, domain, _id } = keyToNotify;
   ApiKeys.update(
     { _id },
     {
@@ -20,7 +23,7 @@ export async function notifyAPIKey(
       },
     }
   );
-  const doc = {
+  const doc: WebHookCall = {
     api_key_id: _id,
     domain,
     google_user_id,
@@ -35,26 +38,18 @@ export async function notifyAPIKey(
   await runWebHookCall(doc);
 }
 
-const privateKey = Buffer.from(Meteor.settings.hooks_private_key, "utf-8");
+const privateKey = Meteor.settings.hooks_private_key;
+
 function signPayload(body) {
   console.log("signPayload", body, privateKey);
   const signer = crypto.createSign("rsa-sha256");
   signer.update(Buffer.from(body, "utf-8"));
   signer.end();
-  return signer.sign(privateKey, "hex").toString("hex");
+  return signer.sign(privateKey, "hex");
 }
-try {
-  console.log(signPayload("Hello world"));
-} catch (e) {
-  console.log(e);
-}
-async function runWebHookCall({
-  _id,
-  webhook_callback_url,
-  event,
-  data,
-  failures,
-}) {
+
+async function runWebHookCall(call: WebHookCall) {
+  const { _id, webhook_callback_url, event, data, failures } = call;
   try {
     WebHookCalls.update(
       { _id },
@@ -142,7 +137,7 @@ Meteor.methods({
   async "ApiKeys.grantAccess"({ domain, webhook_callback_url }) {
     const key = await randomToken();
 
-    const doc = {
+    const doc: ApiKey = {
       key,
       google_user_id: Meteor.user()?.services.google.id || "NONO",
       domain,

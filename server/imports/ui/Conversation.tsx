@@ -16,13 +16,14 @@ export function WriteForm({ to }) {
   const [err, setErr] = useState(null);
   useEffect(() => {
     setErr(null);
-    callMethod
-      .noToast("getDeviceForNumber", to)
-      .then(({ to, from }) => {
+    callMethod("getDeviceForNumber", to).then(({ error, to, from }) => {
+      if (error) {
+        setErr(error);
+      } else {
         setFrom(from);
         setToFormatted(to);
-      })
-      .catch((e) => setErr(e.message));
+      }
+    });
   }, [to]);
 
   function submit(e) {

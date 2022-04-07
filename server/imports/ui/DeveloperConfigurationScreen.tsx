@@ -2,7 +2,11 @@ import { useState } from "react";
 import { useClientTranslation } from "./i18n";
 import { useTracker } from "meteor/react-meteor-data";
 import { callMethod } from "../lib/callMethod";
-import { DomainVerifications, MonkeyUser } from "../collections";
+import {
+  DomainVerification,
+  DomainVerifications,
+  MonkeyUser,
+} from "../collections";
 import { txtRecordForUser } from "../lib/txtRecordForUser";
 import "./DeveloperConfigurationScreen.less";
 import { Table } from "../lib/Table";
@@ -170,10 +174,11 @@ function DomainsVerification() {
                 <button
                   onClick={async (e) => {
                     e.preventDefault();
-                    const { verified, records } = callMethod(
+                    const { verified } = await callMethod<DomainVerification>(
                       "domain.verify.recheck",
                       _id
                     );
+
                     showToast(
                       verified ? t("recheck.worked") : t("recheck.failed"),
                       verified ? "success" : "error"
