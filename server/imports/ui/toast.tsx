@@ -1,4 +1,5 @@
-import "./toast.less";
+import "/imports/ui/toastStyle.less";
+import React, { useEffect, useState } from "react";
 
 const toastContainer = document.createElement("DIV");
 document.body.appendChild(toastContainer);

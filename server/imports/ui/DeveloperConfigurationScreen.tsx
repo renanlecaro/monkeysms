@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useClientTranslation } from "./i18n";
 import { useTracker } from "meteor/react-meteor-data";
 import { callMethod } from "../lib/callMethod";
@@ -8,7 +8,7 @@ import {
   MonkeyUser,
 } from "../collections";
 import { txtRecordForUser } from "../lib/txtRecordForUser";
-import "./DeveloperConfigurationScreen.less";
+import "/imports/ui/DeveloperConfigurationScreenStyle.less";
 import { Table } from "../lib/Table";
 import { showToast } from "./toast";
 import { Meteor } from "meteor/meteor";

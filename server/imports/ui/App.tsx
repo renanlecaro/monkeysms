@@ -1,18 +1,28 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { Devices } from "../collections";
 import { Meteor } from "meteor/meteor";
 import { HomeScreen } from "./HomeScreen";
 import { Dashboard } from "./Dashboard";
 
-import "./App.less";
+import "/imports/ui/AppStyle.less";
 
 import {
   AccessRequestScreen,
   installAddress,
   isAndroidDevice,
   shouldShowAccessRequest,
-} from "./AccessRequestScreen";
+} from "/imports/ui/AccessRequestScreen";
+
+console.log({
+  AccessRequestScreen,
+  installAddress,
+  isAndroidDevice,
+  shouldShowAccessRequest,
+  Devices,
+  HomeScreen,
+  Dashboard,
+});
 import { useClientTranslation } from "./i18n";
 import { InstallApkInstructionScreen } from "./InstallApkInstructionScreen";
 

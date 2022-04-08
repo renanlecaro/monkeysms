@@ -1,5 +1,6 @@
-import "./InstallApkInstructionScreen.less";
+import "/imports/ui/InstallApkInstructionScreenStyle.less";
 import { useClientTranslation } from "./i18n";
+import React, { useEffect, useState } from "react";
 
 export function InstallApkInstructionScreen() {
   const { t, DivHtml } = useClientTranslation("apk");

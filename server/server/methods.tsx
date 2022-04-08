@@ -58,6 +58,7 @@ export function deviceToWriteTo(user, to) {
 
   if (!phoneUtil.isValidNumber(toNumber)) {
     throw new Meteor.Error(
+      "invalid-number",
       `The phone number ${to} is invalid for ${defaultCountryCode}`
     );
   }
@@ -98,10 +99,15 @@ export function deviceToWriteTo(user, to) {
   if (!device) {
     if (Devices.findOne({ google_user_id }))
       throw new Meteor.Error(
+        "no-device",
         "No user device has the correct sim to send to this country : " +
           toNumber.getCountryCode()
       );
-    else throw new Meteor.Error("The user does not have any active device");
+    else
+      throw new Meteor.Error(
+        "no-device-for-country",
+        "The user does not have any active device"
+      );
   }
   const from = device.userNumbers.find(
     (n) => phoneUtil.parse(n).getCountryCode() == toNumber.getCountryCode()
@@ -120,10 +126,16 @@ export async function createMessage({
   // check last message to this contact
 
   if (!rawTo)
-    throw new Meteor.Error("*to* parameter missing in the request body.");
+    throw new Meteor.Error(
+      "missing-to-param",
+      "*to* parameter missing in the request body."
+    );
 
   if (!text)
-    throw new Meteor.Error("*text* parameter missing in the request body.");
+    throw new Meteor.Error(
+      "missing-text-param",
+      "*text* parameter missing in the request body."
+    );
 
   const { device, to, from } = deviceToWriteTo(user, rawTo);
 
@@ -258,7 +270,7 @@ async function notifyDeviceOfNewMessage(device) {
           // we should delete that device probably
           Devices.remove(device._id);
         }
-        throw new Meteor.Error(r.results[0].error);
+        throw new Meteor.Error("device-push-failed", r.results[0].error);
       }
       return r;
     });

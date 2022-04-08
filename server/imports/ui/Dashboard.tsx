@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Meteor } from "meteor/meteor";
 import { UserProfile } from "./UserProfile";
 import { ConversationUI } from "./Conversation";
-import "./Dashboard.less";
+import "/imports/ui/DashboardStyle.less";
 import { useTracker } from "meteor/react-meteor-data";
 import { cleanPhoneNumber, escapeRegExp } from "../lib/escapeRegExp";
 import { callMethod } from "../lib/callMethod";

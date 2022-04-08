@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTracker } from "meteor/react-meteor-data";
-import { ApiKeys } from "../collections";
+import { ApiKey, ApiKeys } from "../collections";
 import { GoogleSignInButton, login } from "./HomeScreen";
 
-import "./HomeScreen.less";
-import "./AccessRequestScreen.less";
+import "/imports/ui/HomeScreenStyle.less";
+import "/imports/ui/AccessRequestScreenStyle.less";
 import { callMethod } from "../lib/callMethod";
+import { Meteor } from "meteor/meteor";
 
 export const isAndroidDevice = !!navigator.userAgent.match(/android/gi);
 export const installAddress = window.location.host + "/apk";
@@ -28,17 +29,15 @@ export function AccessRequestScreen({ qs, user, devices }) {
 
   const monkeyAppDomain = getDomain(Meteor.absoluteUrl());
 
-  useEffect(
-    () =>
-      // ensures that the app receives the api key again
-      callMethod("ApiKeys.reGrantAccessIfAlreadyThere", {
-        webhook_callback_url,
-      }).then(
-        (res) => null,
-        (err) => alert(err.toString())
-      ),
-    []
-  );
+  useEffect(() => {
+    // ensures that the app receives the api key again
+    callMethod("ApiKeys.reGrantAccessIfAlreadyThere", {
+      webhook_callback_url,
+    }).then(
+      () => null,
+      (err) => alert(err.toString())
+    );
+  }, []);
 
   useTracker(() => Meteor.subscribe("ApiKeys"));
   const key = useTracker(() => ApiKeys.findOne({ domain }));
@@ -50,14 +49,7 @@ export function AccessRequestScreen({ qs, user, devices }) {
       done: !!user,
       title: "Login with Google",
       message_done: "Connected as " + userEmail,
-      action: (
-        <GoogleSignInButton
-          onClick={(e) => {
-            e.preventDefault();
-            login();
-          }}
-        />
-      ),
+      action: <GoogleSignInButton />,
     },
     isAndroidDevice
       ? {
@@ -94,11 +86,11 @@ export function AccessRequestScreen({ qs, user, devices }) {
         <button
           onClick={(e) => {
             e.preventDefault();
-            callMethod("ApiKeys.grantAccess", {
+            callMethod<ApiKey>("ApiKeys.grantAccess", {
               domain,
               webhook_callback_url,
             }).then(
-              (res) => (window.location = res.redirect_url),
+              (res) => null,
               (err) => alert(err.toString())
             );
           }}

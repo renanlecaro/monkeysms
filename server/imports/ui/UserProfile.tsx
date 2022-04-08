@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
-import "./UserProfile.less";
+import React, { useEffect, useState } from "react";
+import "/imports/ui/UserProfileStyle.less";
 import { useTracker } from "meteor/react-meteor-data";
-import { ApiKeys } from "../collections";
+import { ApiKeys, ContactCount } from "../collections";
 import { callMethod } from "../lib/callMethod";
 import "./notifications";
+
+import { Meteor } from "meteor/meteor";
+
+import { Mongo } from "meteor/mongo";
 
 import { useClientTranslation } from "./i18n";
 import { NotificationSettingsSection } from "./notifications";
@@ -12,7 +16,7 @@ import { DevModeLink } from "./DeveloperConfigurationScreen";
 import { showToast } from "./toast";
 import { Table } from "../lib/Table";
 
-const ContactsCount = new Mongo.Collection("contactsCount");
+const ContactsCount = new Mongo.Collection<ContactCount>("contactsCount");
 
 export function UserProfile({ user, devices, setQS }) {
   useTracker(() => Meteor.subscribe("contactsCount"));
@@ -197,7 +201,7 @@ export function UserProfile({ user, devices, setQS }) {
         />
       </div>
 
-      <NotificationSettingsSection user={user} />
+      <NotificationSettingsSection />
     </div>
   );
 }

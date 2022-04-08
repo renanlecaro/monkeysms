@@ -93,7 +93,6 @@ Meteor.publish("conversations", function () {
     }
   );
 });
-
 Meteor.publish("contactsCount", function () {
   const google_user_id = Meteor.user()?.services.google.id || "NONO";
   ReactiveAggregate(

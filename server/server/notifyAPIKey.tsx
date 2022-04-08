@@ -35,7 +35,8 @@ export async function notifyAPIKey(keyToNotify: ApiKey, event, data) {
     status: "pending",
   };
   doc._id = WebHookCalls.insert(doc);
-  await runWebHookCall(doc);
+  const allowRetry = event !== "ping";
+  await runWebHookCall(doc, allowRetry);
 }
 
 const privateKey = Meteor.settings.hooks_private_key;
@@ -48,7 +49,7 @@ function signPayload(body) {
   return signer.sign(privateKey, "hex");
 }
 
-async function runWebHookCall(call: WebHookCall) {
+async function runWebHookCall(call: WebHookCall, allowRetry = true) {
   const { _id, webhook_callback_url, event, data, failures } = call;
   try {
     WebHookCalls.update(
@@ -84,7 +85,7 @@ async function runWebHookCall(call: WebHookCall) {
       res.ok
         ? "ok"
         : res.text().then((err) => {
-            throw new Meteor.Error(res.status + " : " + err);
+            throw new Meteor.Error("webhook-failure", res.status + " : " + err);
           })
     );
     WebHookCalls.update({ _id }, { $set: { status: "done" } });
@@ -92,6 +93,10 @@ async function runWebHookCall(call: WebHookCall) {
   } catch (e) {
     // Exponential backoff, 6 attempts, starting by waiting 16 seconds all the way to 72 hours
     console.log(e);
+    if (!allowRetry) {
+      throw new Meteor.Error("notify-api-failed", e.message);
+    }
+
     if (failures >= 7) {
       WebHookCalls.update({ _id }, { $set: { status: "failed" } });
       console.log("Gave up on webhook call  : ", event, data);
@@ -147,16 +152,16 @@ Meteor.methods({
       active: true,
       webhook_callback_url,
     };
-    const _id = ApiKeys.insert(doc);
+    doc._id = ApiKeys.insert(doc);
     if (webhook_callback_url) {
       try {
         return notifyServerOfKey(doc);
       } catch (e) {
-        ApiKeys.remove({ _id });
+        ApiKeys.remove({ _id: doc._id });
         throw e;
       }
     }
-    return { key };
+    return doc;
   },
   async "ApiKeys.reGrantAccessIfAlreadyThere"({ webhook_callback_url }) {
     const existing = ApiKeys.findOne({
@@ -176,7 +181,7 @@ Meteor.methods({
       google_user_id: Meteor.user()?.services.google.id,
     });
     if (!doc) {
-      throw new Meteor.Error("not-found");
+      throw new Meteor.Error("not-found", "no key with id " + _id);
     }
     await notifyAPIKey(doc, "ping", {});
     return "ok";

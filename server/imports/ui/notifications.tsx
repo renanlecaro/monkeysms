@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { NotificationReceivers } from "../collections";
 import { callMethod } from "../lib/callMethod";
 import { useClientTranslation } from "./i18n";
+import { ReactiveVar } from "meteor/reactive-var";
+import { Meteor } from "meteor/meteor";
 
 const swRegistration = new ReactiveVar(null);
 const localSub = new ReactiveVar(null);
@@ -92,10 +94,11 @@ function NotifyHereButton({ activeLocalSub }) {
   const unusedSub = useTracker(() => !activeLocalSub && localSub.get()?.result);
   const { t } = useClientTranslation("profile");
 
-  if (error) return t("notifications.error", { error: error.toString() });
-  if (!result) return t("notifications.loading");
+  if (error)
+    return <> {t("notifications.error", { error: error.toString() })}</>;
+  if (!result) return <> {t("notifications.loading")}</>;
   if (Notification.permission === "denied") {
-    return t("notifications.blocked");
+    return <>{t("notifications.blocked")}</>;
   }
   if (activeLocalSub) return null;
 

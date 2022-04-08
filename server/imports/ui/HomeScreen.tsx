@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor";
-import "./HomeScreen.less";
+import "/imports/ui/HomeScreenStyle.less";
 import { useClientTranslation } from "./i18n";
+import React, { useEffect, useState } from "react";
 
 export function GoogleSignInButton() {
   const { t } = useClientTranslation("homepage");

@@ -1,8 +1,8 @@
 import { useTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import { Messages } from "../collections";
-import { useEffect, useState } from "react";
-import "./Conversation.less";
+import React, { useEffect, useState } from "react";
+import "/imports/ui/ConversationStyle.less";
 import { callMethod } from "../lib/callMethod";
 import Linkify from "react-linkify";
 import { useClientTranslation } from "./i18n";

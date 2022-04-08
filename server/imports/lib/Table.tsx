@@ -1,4 +1,5 @@
-import "./Table.less";
+import "/imports/lib/TableStyle.less";
+import React, { useEffect, useState } from "react";
 
 function identity(value) {
   return value;
@@ -7,7 +8,7 @@ function identity(value) {
 interface TableColumn<T> {
   label: string;
   value?: (row: T) => any;
-  render?: (value: any, row: T) => JSX.Element;
+  render?: (value: any, row: T) => JSX.Element | string;
 }
 
 type TableProps<T> = {

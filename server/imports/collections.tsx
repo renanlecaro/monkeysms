@@ -189,3 +189,8 @@ export interface MonkeyUser extends Meteor.User {
     developper: boolean | undefined;
   };
 }
+
+export interface ContactCount {
+  _id: "count";
+  val: number;
+}

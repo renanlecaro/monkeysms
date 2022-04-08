@@ -106,7 +106,7 @@ export function resolveTXT(domain): Promise<string[][]> {
   return new Promise((resolve, reject) => {
     dns.resolveTxt(domain, (err, records) => {
       if (err) {
-        reject(new Meteor.Error(err.message));
+        reject(new Meteor.Error("resolve-txt-records-failed", err.message));
       } else {
         resolve(records);
       }
