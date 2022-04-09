@@ -123,11 +123,12 @@ async function runWebHookCall(call: WebHookCall, allowRetry = true) {
 Meteor.startup(function () {
   WebHookCalls._ensureIndex({ status: 1, retry_at: 1 });
   WebHookCalls._ensureIndex({ created_at: 1 });
-  Meteor.setInterval(() => {
-    WebHookCalls.find(
+  Meteor.setInterval(async () => {
+    const todo = WebHookCalls.find(
       { status: "pending", retry_at: { $gt: Date.now() } },
-      { limit: 100, sort: { retry_at: 1 } }
-    ).map(runWebHookCall);
+      { limit: 20, sort: { retry_at: 1 } }
+    ).fetch();
+    await Promise.all(todo.map((c) => runWebHookCall(c, true)));
   }, 2000);
 
   Meteor.setInterval(() => {
