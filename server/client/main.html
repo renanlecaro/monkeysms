@@ -1,53 +1,56 @@
 <head>
-  <title>Monkey SMS</title>
-  <link rel="icon" href="/favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monkey SMS</title>
+    <link rel="icon" href="/favicon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
 <body>
-  <noscript>You need javascript to run this app</noscript>
-  <div id="react-target"></div>
-  <div id="spinner"></div>
+<noscript>You need javascript to run this app</noscript>
+<div id="react-target"></div>
+<div id="spinner"></div>
 
-  <style>
+<style>
     #spinner {
-      z-index: 50;
-      position: fixed;
-      left: 50%;
-      top: 50%;
-      background: var(--dim-fg);
-      border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      opacity: 0.2;
-      animation: rotate 0.8s linear infinite;
+        z-index: 50;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        background: var(--dim-fg);
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        opacity: 0.2;
+        animation: rotate 0.8s linear infinite;
     }
+
     #spinner:before {
-      content: "";
-      display: block;
-      background: var(--dim-bg);
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      margin: 10px;
+        content: "";
+        display: block;
+        background: var(--dim-bg);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin: 10px;
     }
+
     #spinner:after {
-      content: "";
-      display: block;
-      background: var(--dim-bg);
-      width: 40px;
-      height: 40px;
-      position: absolute;
-      top: 0;
-      left: 0;
+        content: "";
+        display: block;
+        background: var(--dim-bg);
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
+
     @keyframes rotate {
-      0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-      100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
     }
-  </style>
+</style>
 </body>

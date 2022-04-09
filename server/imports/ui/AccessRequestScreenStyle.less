@@ -1,0 +1,30 @@
+.AccessRequestScreen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  img {
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  li.current {
+    color: var(--links-text-color);
+  }
+
+  li.todo:not(.current) {
+    opacity: 0.5;
+  }
+
+  .button {
+    margin-bottom: 10px;
+  }
+}

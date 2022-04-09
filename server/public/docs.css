@@ -64,17 +64,21 @@ code {
   white-space: break-spaces;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+
 pre {
   padding: 20px;
   border-radius: 3px;
 }
+
 code {
   border-radius: 3px;
   padding: 5px 10px;
 }
+
 pre > code {
   padding: 0;
 }
+
 a[href]:not(.button) {
   font-weight: bold;
   color: var(--links-text-color);
@@ -96,22 +100,26 @@ a[href]:visited {
   text-decoration: none;
   display: inline-block;
 }
+
 .button:not([disabled]) {
   background: var(--accent-bg);
   color: var(--accent-fg);
   box-shadow: 0 4px 0 var(--accent-shadow);
   cursor: pointer;
 }
+
 .button:not([disabled]):hover,
 .button:not([disabled]):focus,
 .button:not([disabled]):active {
   background: var(--accent-shadow);
   text-decoration: none;
 }
+
 .button:not([disabled]):active {
   box-shadow: 0 0 0 var(--accent-shadow);
   transform: translate(0, 4px);
 }
+
 .button[disabled] {
   background: var(--dim-bg);
   color: var(--dim-fg);

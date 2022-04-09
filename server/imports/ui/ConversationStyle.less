@@ -1,0 +1,112 @@
+@import "AppStyle";
+
+.Conversation {
+  min-height: 100vh;
+
+  background: var(--dim-bg);
+  color: var(--dim-fg);
+
+  > * {
+    max-width: 800px;
+
+    background: var(--main-bg);
+    color: var(--main-fg);
+  }
+
+  .messageList {
+    padding: 20px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: calc(100vh - 60px);
+
+    .message {
+      margin-bottom: 0px;
+
+      > .message-meta-info {
+        color: var(--main-fg);
+        opacity: 0.2;
+        font-weight: bold;
+        font-size: 70%;
+        line-height: 40px;
+      }
+
+      > .message-text {
+        white-space: pre-wrap;
+
+        padding: 10px;
+        line-height: 20px;
+
+        background: var(--dim-bg);
+        color: var(--dim-fg);
+        border: 1px solid var(--dim-shadow);
+      }
+    }
+
+    .message.outbound {
+      align-self: flex-end;
+      margin-left: 40px;
+
+      > .message-text {
+        //background: var(--accent-bg);
+        //color: var(--accent-fg);
+        border-radius: 10px 10px 0 10px;
+      }
+    }
+
+    .message.inbound {
+      align-self: flex-start;
+
+      margin-rigth: 40px;
+
+      > .message-text {
+        border-radius: 10px 10px 10px 0;
+      }
+    }
+  }
+
+  form {
+    position: fixed;
+    left: 300px;
+    width: calc(100vw - 300px);
+    bottom: 0;
+    height: 60px;
+
+    background: var(--main-bg);
+    color: var(--main-fg);
+
+    textarea {
+      position: absolute;
+      background: none;
+      font: inherit;
+      color: inherit;
+      resize: none;
+      height: 60px;
+      width: 100%;
+      left: 0;
+      top: 0;
+      line-height: 20px;
+      padding: 10px;
+      padding-right: 100px;
+      border-radius: 0;
+      border: none;
+      outline: none;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+
+      .noScrollBar;
+
+      &:focus {
+        border-top: 1px solid rgba(0, 0, 0, 0.5);
+        outline: none;
+      }
+    }
+
+    .button {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      height: 40px;
+    }
+  }
+}
