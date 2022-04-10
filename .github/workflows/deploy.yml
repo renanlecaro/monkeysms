@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./server
+        working-directory: server
     steps:
       # If redeploying, cancel pending deploys. If a change is only to the readme, running deploys shouldn't be canceled.
       - name: Cancel Previous Runs
