@@ -38,7 +38,7 @@
   "meteor": {
     "mainModule": {
       "client": "client/main.tsx",
-      "server": "server/main.tsx"
+      "server": "server/main.ts"
     }
   },
   "devDependencies": {
