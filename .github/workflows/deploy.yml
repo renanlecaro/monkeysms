@@ -4,22 +4,40 @@ on:
     branches: [ main ]
   workflow_dispatch:
 jobs:
+   # JOB to run change detection
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      server: ${{ steps.filter.outputs.server }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            server:
+              - 'server/**' 
+
   build:
+    needs: changes
+    if: ${{ needs.changes.outputs.server == 'true' }}
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./server
     steps:
+      # If redeploying, cancel pending deploys. If a change is only to the readme, running deploys shouldn't be canceled.
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1
         with:
           access_token: ${{ github.token }}
+
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
-      - uses: actions/checkout@v2
+
       - uses: actions/setup-node@v2
         with:
           node-version: '14.19.0'
