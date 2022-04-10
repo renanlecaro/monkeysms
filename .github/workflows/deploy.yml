@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       server: ${{ steps.filter.outputs.server }}
+      github: ${{ steps.filter.outputs.github }}
     steps:
       - uses: actions/checkout@v2
       - uses: dorny/paths-filter@v2
@@ -17,10 +18,13 @@ jobs:
           filters: |
             server:
               - 'server/**' 
+            github:
+              - '.github/**' 
+            
 
   build:
     needs: changes
-    if: ${{ needs.changes.outputs.server == 'true' }}
+    if: ${{ needs.changes.outputs.server == 'true' || needs.changes.outputs.github == 'true' }}
     runs-on: ubuntu-latest
     defaults:
       run:
