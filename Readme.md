@@ -64,4 +64,4 @@ If you create a fork of the project and want the auto deploy of "main" to work, 
 - secrets.SSH_KEY : Private RSA key used to deploy the meteor app to the server. The corresponding pub key needs to be added to your server's authorized_keys  
 - secrets.KNOWN_HOSTS : Used to deploy the meteor app to the server, result of running `ssh-keyscan -H  188.166.160.106` where the IP address is changed for your own DigitalOcean droplet
 
-The github action in .github/workflows/deploy.yml will look for changes to the `server` folder and only run a redeploy if there are any. 
+The github action in .github/workflows/deploy.yml will look for changes to the `server` folder and only run a redeploy if there are any.
