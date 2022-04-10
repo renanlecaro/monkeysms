@@ -38,6 +38,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: '14.19.0'

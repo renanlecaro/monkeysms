@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "monkey-sms-server",
   "private": true,
   "scripts": {
     "start": "run-p dev:*",
