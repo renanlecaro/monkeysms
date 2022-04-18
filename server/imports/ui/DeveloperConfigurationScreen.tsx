@@ -14,7 +14,7 @@ import { showToast } from "./toast";
 import { Meteor } from "meteor/meteor";
 
 export function DevModeLink({ setQS }) {
-  const { t } = useClientTranslation("profile.developper.DevModeLink");
+  const { t } = useClientTranslation("developper.DevModeLink");
 
   const user = useTracker(() => Meteor.user()) as MonkeyUser;
   if (user.profile.developper) {
@@ -40,7 +40,7 @@ export function DevModeLink({ setQS }) {
 }
 
 export function SidebarDevLink({ path, setPath }) {
-  const { t } = useClientTranslation("profile.developper.SidebarDevLink");
+  const { t } = useClientTranslation("developper.SidebarDevLink");
 
   return (
     <a
@@ -56,7 +56,7 @@ export function SidebarDevLink({ path, setPath }) {
 
 export function DeveloperConfigurationScreen() {
   const { t, ParagraphHtml } = useClientTranslation(
-    "profile.developper.DevelopperConfigurationScreen"
+    "developper.DevelopperConfigurationScreen"
   );
 
   return (
@@ -73,9 +73,7 @@ export function DeveloperConfigurationScreen() {
 }
 
 function HooksSignatureInfo() {
-  const { t, DivHtml } = useClientTranslation(
-    "profile.developper.HooksSignatureInfo"
-  );
+  const { t, DivHtml } = useClientTranslation("developper.HooksSignatureInfo");
   return (
     <div className={"block"}>
       <h2>{t("title")}</h2>
@@ -88,9 +86,7 @@ function HooksSignatureInfo() {
 }
 
 function DomainsVerification() {
-  const { t, DivHtml } = useClientTranslation(
-    "profile.developper.DomainsVerification"
-  );
+  const { t, DivHtml } = useClientTranslation("developper.DomainsVerification");
   const [toVerify, setToVerify] = useState("");
   useTracker(() => Meteor.subscribe("domain.list"));
   const domains = useTracker(() => DomainVerifications.find().fetch());
