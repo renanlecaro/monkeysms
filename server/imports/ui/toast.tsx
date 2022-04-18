@@ -18,3 +18,7 @@ export function showToast(text, className = "success") {
     clearTimeout(timeout);
   }
 }
+
+export function toastError(err: Error) {
+  showToast(err.message || err.toString(), "error");
+}

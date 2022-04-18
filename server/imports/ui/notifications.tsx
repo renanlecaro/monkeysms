@@ -5,6 +5,7 @@ import { callMethod } from "../lib/callMethod";
 import { useClientTranslation } from "./i18n";
 import { ReactiveVar } from "meteor/reactive-var";
 import { Meteor } from "meteor/meteor";
+import { toastError } from "/imports/ui/toast";
 
 const swRegistration = new ReactiveVar(null);
 const localSub = new ReactiveVar(null);
@@ -111,7 +112,7 @@ function NotifyHereButton({ activeLocalSub }) {
           return addReceiver(unusedSub);
         }
 
-        subscribeUser().then((sub) => addReceiver(sub));
+        subscribeUser().then((sub) => addReceiver(sub), toastError);
       }}
     >
       {t("notifications.enable")}
@@ -144,13 +145,10 @@ function subscribeUser() {
       userVisibleOnly: true,
       applicationServerKey: applicationServerKey,
     })
-    .then(
-      (sub) => {
-        localSub.set(sub);
-        return sub;
-      },
-      (err) => console.error(err)
-    );
+    .then((sub) => {
+      localSub.set(sub);
+      return sub;
+    });
 }
 
 let userDeviceDescription = "Unknown device";
