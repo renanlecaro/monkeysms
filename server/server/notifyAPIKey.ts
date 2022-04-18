@@ -30,9 +30,10 @@ export async function notifyAPIKey(keyToNotify: ApiKey, event, data) {
     webhook_callback_url,
     event,
     data,
-    created_at: Date.now(),
+    createdAt: Date.now(),
     failures: 0,
     status: "pending",
+    webhook_calls: 0,
   };
   doc._id = WebHookCalls.insert(doc);
   const allowRetry = event !== "ping";
@@ -122,7 +123,7 @@ async function runWebHookCall(call: WebHookCall, allowRetry = true) {
 
 Meteor.startup(function () {
   WebHookCalls._ensureIndex({ status: 1, retry_at: 1 });
-  WebHookCalls._ensureIndex({ created_at: 1 });
+  WebHookCalls._ensureIndex({ createdAt: 1 });
   Meteor.setInterval(async () => {
     const todo = WebHookCalls.find(
       { status: "pending", retry_at: { $gt: Date.now() } },
@@ -134,7 +135,7 @@ Meteor.startup(function () {
   Meteor.setInterval(() => {
     // Erase all webhook calls that are older than 30 days , check every hour
     WebHookCalls.remove({
-      created_at: { $lt: Date.now() - 30 * 24 * 60 * 60 * 1000 },
+      createdAt: { $lt: Date.now() - 30 * 24 * 60 * 60 * 1000 },
     });
   }, 60 * 60 * 1000);
 });

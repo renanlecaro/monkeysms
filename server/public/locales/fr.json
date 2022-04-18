@@ -51,6 +51,7 @@
 			"title": "Signature des requêtes de web hook"
 		},
 		"SidebarDevLink": {
+			"domain_link": "Inspecter ",
 			"link": "Mode développeur ",
 			"subtitle": "Configurez vos applis"
 		}

@@ -1,5 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import { ApiKeys, Contacts, Devices, Messages } from "../imports/collections";
+// @ts-ignore
 import { ReactiveAggregate } from "meteor/jcbernack:reactive-aggregate";
 
 Meteor.publish(null, function () {

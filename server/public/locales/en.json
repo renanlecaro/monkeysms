@@ -51,6 +51,7 @@
 			"title": "Web hooks payload signing"
 		},
 		"SidebarDevLink": {
+			"domain_link": "Inspect calls",
 			"link": "Developer dashboard",
 			"subtitle": "Configure your apps"
 		}

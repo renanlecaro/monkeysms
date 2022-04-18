@@ -54,6 +54,9 @@ export interface ApiKey {
 
   webhook_callback_url: Url;
   domain: WebHookDomain;
+
+  last_webhook_call?: TimeStamp;
+  webhook_calls: number;
 }
 
 //  Represents a (phone number - name) pair. Imported from the user's phone, and used in the UI
@@ -152,7 +155,7 @@ export interface WebHookCall {
   webhook_callback_url: Url;
   event: WebHookEvent;
   data: any;
-  created_at: TimeStamp;
+  createdAt: TimeStamp;
   failures: number;
   status: "pending" | "running" | "done" | "failed";
 }

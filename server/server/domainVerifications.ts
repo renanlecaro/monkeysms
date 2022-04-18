@@ -1,5 +1,10 @@
 import { Meteor } from "meteor/meteor";
-import { DomainVerification, DomainVerifications } from "/imports/collections";
+import {
+  ApiKeys,
+  DomainVerification,
+  DomainVerifications,
+  WebHookCalls,
+} from "/imports/collections";
 
 import dns from "dns";
 import { txtRecordForUser } from "../imports/lib/txtRecordForUser";
@@ -45,19 +50,32 @@ Meteor.methods({
   },
 });
 
+async function retRecordsAndVerify(verification) {
+  if (
+    verification.domain == "localhost" &&
+    Meteor.absoluteUrl().match(/localhost/)
+  ) {
+    return { verified: true, records: [] };
+  }
+
+  const records = (await resolveTXT(verification.domain)).flat();
+
+  if (records.length > 100) {
+    throw new Meteor.Error(
+      "too-many-records",
+      "Too many TXT records on domain (max 100)"
+    );
+  }
+  const expected = txtRecordForUser(verification.google_user_id);
+  return {
+    verified: !!records.find((record) => record.trim() === expected),
+    records,
+  };
+}
 async function verifyDomain(verification): Promise<DomainVerification> {
   let result = null;
   try {
-    const records = (await resolveTXT(verification.domain)).flat();
-    if (records.length > 100) {
-      throw new Meteor.Error(
-        "too-many-records",
-        "Too many TXT records on domain (max 100)"
-      );
-    }
-    console.log(records);
-    const expected = txtRecordForUser(verification.google_user_id);
-    const verified = !!records.find((record) => record.trim() === expected);
+    const { verified, records } = await retRecordsAndVerify(verification);
     if (verification.failures > 6 && !verified) {
       result = {
         verified,
@@ -96,9 +114,10 @@ async function verifyDomain(verification): Promise<DomainVerification> {
   return result;
 }
 
-Meteor.publish("domain.list", function () {
+Meteor.publish("domain.list", function (filter = {}) {
   return DomainVerifications.find({
-    google_user_id: Meteor.user()?.services.google.id,
+    ...filter,
+    google_user_id: Meteor.user().services.google.id,
   });
 });
 
@@ -127,3 +146,48 @@ Meteor.setInterval(() => {
     verifyDomain(dv);
   });
 }, 1000 * 60 * 60);
+
+function userOwnsDomain(domain: string) {
+  if (!domain) {
+    console.error("No domain passed");
+    return false;
+  }
+  if (!Meteor.user()) {
+    console.error("No user");
+    return false;
+  }
+  if (
+    !DomainVerifications.findOne({
+      status: "verified",
+      domain,
+      google_user_id: Meteor.user().services.google.id,
+    })
+  ) {
+    console.error("No verified check");
+    return false;
+  }
+  return true;
+}
+Meteor.publish("domain.verified.ApiKeys", function ({ domain = "" }) {
+  if (!userOwnsDomain(domain)) {
+    return [];
+  }
+  return ApiKeys.find(
+    {
+      domain,
+    },
+    { sort: { createdAt: -1 }, limit: 100 }
+  );
+});
+
+Meteor.publish("domain.verified.WebHookCalls", function ({ domain = "" }) {
+  if (!userOwnsDomain(domain)) {
+    return [];
+  }
+  return WebHookCalls.find(
+    {
+      domain,
+    },
+    { sort: { createdAt: -1 }, limit: 100 }
+  );
+});

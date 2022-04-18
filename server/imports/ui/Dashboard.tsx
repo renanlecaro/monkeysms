@@ -9,10 +9,11 @@ import { callMethod } from "../lib/callMethod";
 import { useClientTranslation } from "./i18n";
 import {
   DeveloperConfigurationScreen,
-  SidebarDevLink,
+  DomainInspector,
+  SidebarDevLinks,
 } from "./DeveloperConfigurationScreen";
 import { Mongo } from "meteor/mongo";
-import { Conversation } from "/imports/collections";
+import { Conversation, DomainVerifications } from "/imports/collections";
 
 export function Dashboard(props) {
   const { qs } = props;
@@ -23,10 +24,19 @@ export function Dashboard(props) {
   const path = qs("path");
 
   // I should probably use a router here
-  const pageContent = {
-    dev: <DeveloperConfigurationScreen {...props} />,
-    "": <UserProfile {...props} />,
-  }[path] || <ConversationUI {...props} to={path} />;
+  const pageContent = (() => {
+    if (!path) return <UserProfile {...props} />;
+    if (path == "dev") return <DeveloperConfigurationScreen {...props} />;
+    if (path.match(/dev\/domain\/.*/))
+      return (
+        <DomainInspector
+          {...props}
+          domain={path.replace(/dev\/domain\//gi, "")}
+        />
+      );
+
+    return <ConversationUI {...props} to={path} />;
+  })();
 
   return (
     <div className={"Dashboard"}>
@@ -101,7 +111,7 @@ function SideBar({ user, qs, setQS }) {
         <strong>{user.services.google.name}</strong>
         <em> {user.services.google.email}</em>
       </a>
-      <SidebarDevLink {...{ setPath, path }} />
+      <SidebarDevLinks {...{ setPath, path }} />
       <div className={"searchBar"}>
         <input
           type={"search"}
