@@ -1,140 +1,140 @@
 {
-  "WriteForm": {
-    "input_placeholder": "Rédigez votre SMS ici, il sera envoyé à {{toFormatted}} depuis {{from}}",
-    "send": "Envoyer"
-  },
-  "apk": {
-    "back_home": "Retournez à la page d'accueil",
-    "button_label": "Télécharger l'apk",
-    "intro": "<p> Google  <a href=\"https://support.google.com/googleplay/android-developer/answer/10208820?hl=en#zippy=%2Cpermitted-uses-of-the-sms-and-call-log-permissions%2Cexceptions\">assez strict</a> à propos de ce qu'une application SMS peut faire, alors l'application ne figure pas sur le play store. </ P>\n<p> Pour le moment, vous devrez l'installer directement à partir du fichier APK. Vous devez télécharger le fichier, puis l'installer. Vous devrez autoriser votre navigateur Web à installer des applications à partir de «sources inconnues».</p> \n <p> Veuillez être conscient des limitations suivantes de l'application: </ p>\n\n      <ul> \n        <li>\n          <strong> 10 Mo d'espace de stockage </ strong> est requis\n        </ li>\n        <li>\n          Les <strong> Google Play Services </ strong> sont nécessaires, comme vous aurez besoin de\n          vous connecter avec Google\n        </ li>\n        <li>\n          <strong> Android 5.1 </ strong> (niveau API 22) est la plus ancienne version d'Android\n          utilisable.\n        </ li>\n      </ ul>  ",
-    "title": "Installer MonkeySMS sur votre téléphone"
-  },
-  "homepage": {
-    "footer": {
-      "about": "A propos",
-      "api": "API",
-      "privacy": "Vie Privée",
-      "tos": "CGU"
-    },
-    "slide_0": {
-      "login": "Accéder à l'application",
-      "open": "Ouvrir application",
-      "p0": "Installez notre <a href=\"/apk\">application</a> android sur un ou plusieurs <strong>téléphones Android</strong>. Connectez le même compte google à l'application et à cette page. ",
-      "p1": "Lisez vos SMS et envoyez des réponses. Votre téléphone peut être n'importe où tant qu'il dispose d'un accès au réseau et d'Internet.",
-      "title": "Envoyer des SMS de n'importe ou"
-    },
-    "slide_1": {
-      "action": "Documentation ",
-      "p0": "La raison pour laquelle cette application existe est de rendre le SMS programmable. Il existe déjà de nombreuses solutions sur le marché pour envoyer des SMS de votre ordinateur.",
-      "p1": "Cependant, aucun d'entre eux ne vous permet d'envoyer facilement des SMS d'une manière simple, programmable et entièrement automatisée.",
-      "title": "Programmable"
-    },
-    "slide_2": {
-      "action": "Voir le code",
-      "p0": "Il est très difficile de faire accepter ce type d'application utilisateur sur le Play Store. Après quelques refus de leur équipe de vérification, j'ai décidé d'arrêter de perdre des heures sur ça. Au lieu de cela, j'ai décidé de publier le fichier d'installation directement, et de rendre le code entièrement public pour vous permettre de vérifier le contenu de l'appli.",
-      "p1": "Vous pouvez lire le code, et si vous êtes techniquement compétent, vous pouvez même le compiler vous-même. L'appli est <strong>gratuite pour l'instant</strong>, mais veuillez noter que \"open source\" ne signifie pas \"support gratuit\" ou \"hébergement gratuit\". Je me réserve le droit d'introduire un abonnement payant à l'avenir.",
-      "title": "Open source"
-    }
-  },
-  "install_prompt": {
-    "install_app": "Installer l'appli",
-    "on_your_phone": " sur votre téléphone ",
-    "open_this": "Ouvrez cette page  ",
-    "or": " ou ",
-    "skip": "passer cette étape",
-    "title": "Vous êtes connecté"
-  },
-  "profile": {
-    "account": {
-      "delete": "Supprimer le compte",
-      "log_out": "Déconnexion",
-      "title": "Votre compte"
-    },
-    "api_keys": {
-      "count": "Vous avez connecté {{count}} apps sur votre compte.",
-      "ping": "Ping",
-      "ping_error": "Le ping a échoué, l'appli n'est pas joignable",
-      "ping_success": "Le ping à marché, l'appli est joignable",
-      "remove": "Retirer",
-      "title": "Applications connectées"
-    },
-    "contacts": {
-      "dupes_listed_twice": "Les contacts avec plusieurs numéros sont créés plusieurs fois.",
-      "imported": "Vous avez importé {{count}} combinaison nom / numéro.",
-      "number_needed": "Les contacts sans numéro de téléphone sont ignorés.",
-      "title": "Contacts"
-    },
-    "defaultCountry": {
-      "instructions": "Considérer les numéros sans préfixe international comme : ",
-      "title": "Pays par défaut"
-    },
-    "developper": {
-      "DevModeLink": {
-        "action": "activer le mode développeur",
-        "done": "Vous avez activé le mode développeur, voir le lien dans la barre latérale",
-        "label": "Si vous souhaitez connecter vos propres applications Web à MonkeySMS et envoyer des SMS depuis le téléphone de vos utilisateurs, vous pouvez commencer par "
-      },
-      "DevelopperConfigurationScreen": {
-        "intro": "Cet écran vous aidera à configurer la connexion entre votre application Web et notre système, vous permettant d'envoyer des messages SMS à partir des téléphones de vos utilisateurs.",
-        "title": "Mode développeur "
-      },
-      "DomainsVerification": {
-        "intro": "<p>Pour prouver que vous possédez un domaine ou sous-domaine, ajoutez l'enregistrement TXT suivant à votre DNS :</p>\n <code>{{txtTagRequired}}</code>\n<p>Vous pouvez ensuite taper votre domaine ici et nous vérifierons que l'enregistrement est là. Une fois qu'un domaine est validé, vous pourrez voir toutes les informations de débogage sur son utilisation de l'API.</p>",
-        "recheck": {
-          "action": "Revérifier",
-          "failed": "On non ! Le TXT n'a pas été trouvé. Après le premier essais, il arrive que le record DNS soit mis en cache, donc réessayez demain",
-          "worked": "Hourra ! L'entrée TXT a bien été trouvée"
-        },
-        "remove": {
-          "action": "Retirer"
-        },
-        "results": {
-          "hasRecords": "{{count}} TXT trouvé(s)",
-          "label": "Résultat",
-          "noRecord": "Pas d'entrée DNS TXT"
-        },
-        "status": {
-          "error": "Domaine non joignable",
-          "pending": "En attente..",
-          "verified": "Vérifié"
-        },
-        "title": "Domaines vérifiés",
-        "toVerify": {
-          "action": "Vérifier",
-          "label": "Nom de domaine ou vous avez ajouté l'entrée TXT au DNS",
-          "placeholder": "exemple.fr"
-        }
-      },
-      "HooksSignatureInfo": {
-        "intro": "<p>Lorsque vous envoyez des utilisateurs à notre façon de s'authentifier, l'URL du web hook est simplement transmise en tant que paramètre de chaîne de requête et est visible par l'utilisateur. Vous devez vous assurer que cette URL n'est pas facile à deviner pour n'importe quel utilisateur.\n</p>\n<p>Pour s'assurer que les événements ne peuvent pas être facilement falsifiés, chaque appel de crochet Web est signé à l'aide de notre clé publique. Voir l'exemple de code pour un moyen efficace de le vérifier.\n</p>\n<p>La clé publique utilisée sur ce serveur est la suivante : </p>\n<code>{{publicKey}}</code>",
-        "title": "Signature des requêtes de web hook"
-      },
-      "SidebarDevLink": {
-        "link": "Mode développeur ",
-        "subtitle": "Configurez vos applis"
-      },
-      "how_to": "Voir Comment utiliser l'<a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMS dans votre propre application Web."
-    },
-    "devices": {
-      "disconnect": "Déconnecter",
-      "intro": "Vos appareils connectés via l'appli Android :",
-      "last_seen": "dernière connexion ",
-      "no_device": "Vous n'avez pas encore connecté de périphérique, ce tableau de bord est donc un peu vide. Voir sur <a href=\"/apk\"> Cette page </a> comment installer l'application.",
-      "no_number": "Sans carte SIM",
-      "title": "Dispositifs"
-    },
-    "notifications": {
-      "blocked": "Notifications bloquées",
-      "delete_device": "Retirer",
-      "enable": "Activer les notifications",
-      "error": "Erreur: {{error}}",
-      "intro": "Vous pouvez recevoir les nouvelles notifications de messages sur plusieurs périphériques",
-      "loading": "Chargement...",
-      "test_device": "Test",
-      "title": "Notifications"
-    }
-  },
-  "sidebar": {
-    "search": "Trouver un contact"
-  }
+	"WriteForm": {
+		"input_placeholder": "Rédigez votre SMS ici, il sera envoyé à {{toFormatted}} depuis {{from}}",
+		"send": "Envoyer"
+	},
+	"apk": {
+		"back_home": "Retournez à la page d'accueil",
+		"button_label": "Télécharger l'apk",
+		"intro": "<p> Google  <a href=\"https://support.google.com/googleplay/android-developer/answer/10208820?hl=en#zippy=%2Cpermitted-uses-of-the-sms-and-call-log-permissions%2Cexceptions\">assez strict</a> à propos de ce qu'une application SMS peut faire, alors l'application ne figure pas sur le play store. </ P>\n<p> Pour le moment, vous devrez l'installer directement à partir du fichier APK. Vous devez télécharger le fichier, puis l'installer. Vous devrez autoriser votre navigateur Web à installer des applications à partir de «sources inconnues».</p> \n <p> Veuillez être conscient des limitations suivantes de l'application: </ p>\n\n      <ul> \n        <li>\n          <strong> 10 Mo d'espace de stockage </ strong> est requis\n        </ li>\n        <li>\n          Les <strong> Google Play Services </ strong> sont nécessaires, comme vous aurez besoin de\n          vous connecter avec Google\n        </ li>\n        <li>\n          <strong> Android 5.1 </ strong> (niveau API 22) est la plus ancienne version d'Android\n          utilisable.\n        </ li>\n      </ ul>  ",
+		"title": "Installer MonkeySMS sur votre téléphone"
+	},
+	"developper": {
+		"DevModeLink": {
+			"action": "activer le mode développeur",
+			"done": "Vous avez activé le mode développeur, voir le lien dans la barre latérale",
+			"label": "Si vous souhaitez connecter vos propres applications Web à MonkeySMS et envoyer des SMS depuis le téléphone de vos utilisateurs, vous pouvez commencer par "
+		},
+		"DevelopperConfigurationScreen": {
+			"intro": "Cet écran vous aidera à configurer la connexion entre votre application Web et notre système, vous permettant d'envoyer des messages SMS à partir des téléphones de vos utilisateurs.",
+			"title": "Mode développeur "
+		},
+		"DomainsVerification": {
+			"intro": "<p>Pour prouver que vous possédez un domaine ou sous-domaine, ajoutez l'enregistrement TXT suivant à votre DNS :</p>\n <code>{{txtTagRequired}}</code>\n<p>Vous pouvez ensuite taper votre domaine ici et nous vérifierons que l'enregistrement est là. Une fois qu'un domaine est validé, vous pourrez voir toutes les informations de débogage sur son utilisation de l'API.</p>",
+			"recheck": {
+				"action": "Revérifier",
+				"failed": "On non ! Le TXT n'a pas été trouvé. Après le premier essais, il arrive que le record DNS soit mis en cache, donc réessayez demain",
+				"worked": "Hourra ! L'entrée TXT a bien été trouvée"
+			},
+			"remove": {
+				"action": "Retirer"
+			},
+			"results": {
+				"hasRecords": "{{count}} TXT trouvé(s)",
+				"label": "Résultat",
+				"noRecord": "Pas d'entrée DNS TXT"
+			},
+			"status": {
+				"error": "Domaine non joignable",
+				"pending": "En attente..",
+				"verified": "Vérifié"
+			},
+			"title": "Domaines vérifiés",
+			"toVerify": {
+				"action": "Vérifier",
+				"label": "Nom de domaine ou vous avez ajouté l'entrée TXT au DNS",
+				"placeholder": "exemple.fr"
+			}
+		},
+		"HooksSignatureInfo": {
+			"intro": "<p>Lorsque vous envoyez des utilisateurs à notre façon de s'authentifier, l'URL du web hook est simplement transmise en tant que paramètre de chaîne de requête et est visible par l'utilisateur. Vous devez vous assurer que cette URL n'est pas facile à deviner pour n'importe quel utilisateur.\n</p>\n<p>Pour s'assurer que les événements ne peuvent pas être facilement falsifiés, chaque appel de crochet Web est signé à l'aide de notre clé publique. Voir <a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\"> l'exemple de code </a>pour un moyen efficace de le vérifier.\n</p>\n<p>La clé publique utilisée sur ce serveur est la suivante : </p>\n<code>{{publicKey}}</code>",
+			"title": "Signature des requêtes de web hook"
+		},
+		"SidebarDevLink": {
+			"link": "Mode développeur ",
+			"subtitle": "Configurez vos applis"
+		},
+		"how_to": "Voir Comment utiliser l'<a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMS dans votre propre application Web."
+	},
+	"homepage": {
+		"footer": {
+			"about": "A propos",
+			"api": "API",
+			"privacy": "Vie Privée",
+			"tos": "CGU"
+		},
+		"slide_0": {
+			"login": "Accéder à l'application",
+			"open": "Ouvrir application",
+			"p0": "Installez notre <a href=\"/apk\">application</a> android sur un ou plusieurs <strong>téléphones Android</strong>. Connectez le même compte google à l'application et à cette page. ",
+			"p1": "Lisez vos SMS et envoyez des réponses. Votre téléphone peut être n'importe où tant qu'il dispose d'un accès au réseau et d'Internet.",
+			"title": "Envoyer des SMS de n'importe ou"
+		},
+		"slide_1": {
+			"action": "Documentation ",
+			"p0": "La raison pour laquelle cette application existe est de rendre le SMS programmable. Il existe déjà de nombreuses solutions sur le marché pour envoyer des SMS de votre ordinateur.",
+			"p1": "Cependant, aucun d'entre eux ne vous permet d'envoyer facilement des SMS d'une manière simple, programmable et entièrement automatisée.",
+			"title": "Programmable"
+		},
+		"slide_2": {
+			"action": "Voir le code",
+			"p0": "Il est très difficile de faire accepter ce type d'application utilisateur sur le Play Store. Après quelques refus de leur équipe de vérification, j'ai décidé d'arrêter de perdre des heures sur ça. Au lieu de cela, j'ai décidé de publier le fichier d'installation directement, et de rendre le code entièrement public pour vous permettre de vérifier le contenu de l'appli.",
+			"p1": "Vous pouvez lire le code, et si vous êtes techniquement compétent, vous pouvez même le compiler vous-même. L'appli est <strong>gratuite pour l'instant</strong>, mais veuillez noter que \"open source\" ne signifie pas \"support gratuit\" ou \"hébergement gratuit\". Je me réserve le droit d'introduire un abonnement payant à l'avenir.",
+			"title": "Open source"
+		}
+	},
+	"install_prompt": {
+		"install_app": "Installer l'appli",
+		"on_your_phone": " sur votre téléphone ",
+		"open_this": "Ouvrez cette page  ",
+		"or": " ou ",
+		"skip": "passer cette étape",
+		"title": "Vous êtes connecté"
+	},
+	"profile": {
+		"account": {
+			"delete": "Supprimer le compte",
+			"log_out": "Déconnexion",
+			"title": "Votre compte"
+		},
+		"api_keys": {
+			"count": "Vous avez connecté {{count}} apps sur votre compte.",
+			"ping": "Ping",
+			"ping_error": "Le ping a échoué, l'appli n'est pas joignable",
+			"ping_success": "Le ping à marché, l'appli est joignable",
+			"remove": "Retirer",
+			"title": "Applications connectées"
+		},
+		"contacts": {
+			"dupes_listed_twice": "Les contacts avec plusieurs numéros sont créés plusieurs fois.",
+			"imported": "Vous avez importé {{count}} combinaison nom / numéro.",
+			"number_needed": "Les contacts sans numéro de téléphone sont ignorés.",
+			"title": "Contacts"
+		},
+		"defaultCountry": {
+			"instructions": "Considérer les numéros sans préfixe international comme : ",
+			"title": "Pays par défaut"
+		},
+		"devices": {
+			"disconnect": "Déconnecter",
+			"intro": "Vos appareils connectés via l'appli Android :",
+			"last_seen": "dernière connexion ",
+			"no_device": "Vous n'avez pas encore connecté de périphérique, ce tableau de bord est donc un peu vide. Voir sur <a href=\"/apk\"> Cette page </a> comment installer l'application.",
+			"no_number": "Sans carte SIM",
+			"title": "Dispositifs"
+		},
+		"notifications": {
+			"blocked": "Notifications bloquées",
+			"delete_device": "Retirer",
+			"enable": "Activer les notifications",
+			"error": "Erreur: {{error}}",
+			"intro": "Vous pouvez recevoir les nouvelles notifications de messages sur plusieurs périphériques",
+			"loading": "Chargement...",
+			"test_device": "Test",
+			"title": "Notifications"
+		}
+	},
+	"sidebar": {
+		"search": "Trouver un contact"
+	}
 }
