@@ -16,7 +16,7 @@
 			"label": "If you want to connect your own web apps MonkeySMS and send SMS messages from your user's phones you can start by "
 		},
 		"DevelopperConfigurationScreen": {
-			"intro": "This screen will help you configure the connection between your web app and our system, enabling you to send SMS messages from you user's phones.",
+			"intro": "This screen will help you configure the connection between your web app and our system, enabling you to send SMS messages from you user's phones. See how to use the <a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">MonkeySMS API</a> in your own web app. ",
 			"title": "Developer dashboard"
 		},
 		"DomainsVerification": {
@@ -53,8 +53,7 @@
 		"SidebarDevLink": {
 			"link": "Developer dashboard",
 			"subtitle": "Configure your apps"
-		},
-		"how_to": "See how to use the <a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMSin your own web app. "
+		}
 	},
 	"homepage": {
 		"footer": {

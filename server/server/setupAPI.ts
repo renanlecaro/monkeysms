@@ -22,6 +22,10 @@ export function setupAPI(app) {
 
   app.use("/api/", bodyParser.json());
 
+  app.get("/api/monkey_sms_api_version", (req, res) =>
+    res.status(200).json({ version: 1 })
+  );
+
   app.use("/api/v1/", async (req, res, next) => {
     const couldContainKey = { ...req.query, ...req.headers };
 

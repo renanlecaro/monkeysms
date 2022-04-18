@@ -16,7 +16,7 @@
 			"label": "Si vous souhaitez connecter vos propres applications Web à MonkeySMS et envoyer des SMS depuis le téléphone de vos utilisateurs, vous pouvez commencer par "
 		},
 		"DevelopperConfigurationScreen": {
-			"intro": "Cet écran vous aidera à configurer la connexion entre votre application Web et notre système, vous permettant d'envoyer des messages SMS à partir des téléphones de vos utilisateurs.",
+			"intro": "Cet écran vous aidera à configurer la connexion entre votre application Web et notre système, vous permettant d'envoyer des messages SMS à partir des téléphones de vos utilisateurs. Voir Comment utiliser l'<a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API MonkeySMS</a>  dans votre propre application Web.",
 			"title": "Mode développeur "
 		},
 		"DomainsVerification": {
@@ -53,8 +53,7 @@
 		"SidebarDevLink": {
 			"link": "Mode développeur ",
 			"subtitle": "Configurez vos applis"
-		},
-		"how_to": "Voir Comment utiliser l'<a href=\"https://github.com/renanlecaro/monkeysms/tree/main/api_use_example\" target=\"_blank\">API</a> MonkeySMS dans votre propre application Web."
+		}
 	},
 	"homepage": {
 		"footer": {

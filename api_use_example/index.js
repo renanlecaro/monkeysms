@@ -1,37 +1,59 @@
-// If use_local_api = false, this sample app will expose itself to the internet using ngrok and use the main
-// instance of monkeySMS at monkeysms.com
-// If use_local_api = true, this sample app will try to use the local  instance of monkey SMS at localhost:3000
-const use_local_api = true;
-
 // This is the production public key used to sign messages on monkeysms.com.
 // If you are using your local instance of monkeySMS, the key signing the
 // messages will be different.
 const api_public_hook_key =
   "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqFuvCOe2oltiHiy32BKK\nuYAY/tv3fDek+5ePgWUpc/KdC5aK8jUIlRp3ast6iqrDN5G8TfExAr27Ch5xdlfu\nnX9YeUdLYftkG7bgENVobDgnOHXvUQIMq8d1DU2Tyfj/Y9sNCgSCGnhcb4ZzmQpg\n7ukJwKYBhG8rReV24TrZtqeT9AEtrYsUrtFOKMM1BCiSwDmi8y68cEZ3QHxFxhTs\noFt+g0jnNY20dnzSNh4mdNSWweqUF0u0j4usbuzeQZN4aW88k7obv6VCZ2OlHN8x\nEr9+gCetJnSWATyJCDUhhaABEzizfyDs1NMYFMO89Sm4QjxibK0Xj+ldZv0o41i9\ncQIDAQAB\n-----END PUBLIC KEY-----\n";
 
-const api_url = use_local_api
-  ? "http://localhost:3033/"
-  : "https://monkeysms.com/";
-const use_ngrok = !use_local_api;
-
 const port = 4000;
 
 const express = require("express");
 const fetch = require("node-fetch");
 const bodyParser = require("body-parser");
-// this is the native node module, not an npm lib
+const ngrok = require("ngrok");
 const crypto = require("crypto");
 
-function setupApp(rootUrl) {
+async function setupApp() {
+  let use_local_api;
+
+  // Attempt to check if there's a local dev version of monkeysms running.
+  // In your production app, this is not needed, you'd just point to monkeysms.com
+  try {
+    const res = await fetch("http://localhost:3033/api/monkey_sms_api_version");
+    const { version } = await res.json();
+    use_local_api = true;
+    console.log(
+      "Using local monkeySMS instance at localhost:3033, version : " + version
+    );
+  } catch (e) {
+    console.log("Using the main version of the API at monkeysms.com");
+    use_local_api = false;
+  }
+
+  const api_url = use_local_api
+    ? "http://localhost:3033/"
+    : "https://monkeysms.com/";
+
+  // We can't have 2 instances of ngrok running on the same machine. If your api is running locally, it is already
+  // running ngork. Plus it will be able to reach this app on localhost. So we don't need to use ngork to expose this
+  // app to the internet.
+  const use_ngrok = !use_local_api;
+
+  // rootUrl is the url of our server on the public internet
+  let rootUrl;
+  if (use_ngrok) {
+    // The ngrok tunnel is required to have a public URL for the webhook callback
+    console.info("Starting ngork tunnel");
+    rootUrl = await ngrok.connect({ addr: port });
+  } else {
+    rootUrl = "http://localhost:" + port;
+  }
+
   const webhook_url = rootUrl + "/monkey_sms_callback";
   const redirect_url = rootUrl + "/send_message";
   const app = express();
 
   // This demo just stores one key in RAM instead of storing one key per user in a DB
   let api_key = null;
-
-  console.info("App started on adress : " + rootUrl);
-  // rootUrl is the url of our server on the public internet
 
   // When the user opens the home page, we check if we have an api key for him
   // (well, we just have one key for everyone in this demo, but that's the idea)
@@ -157,18 +179,11 @@ function setupApp(rootUrl) {
   });
 
   app.listen(port, () => {
-    console.log(`Example app running on  ${rootUrl}`);
+    console.log(`Api use example running on  ${rootUrl}`);
   });
 }
 
-if (use_ngrok) {
-  const ngrok = require("ngrok");
-  // The ngrok tunnel is required to have a public URL for the webhook callback
-  console.info("Starting ngork tunnel");
-  ngrok.connect({ addr: port }).then(setupApp, (err) => console.error(err));
-} else {
-  setupApp("http://localhost:" + port);
-}
+setupApp().catch(console.error);
 
 // just some styles to make the sample app more readable
 const css = `<style>
